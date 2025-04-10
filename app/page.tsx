@@ -41,29 +41,27 @@ export default function Home() {
 
   return (
     <div className='text-black justify-center items-center flex'>
-      {messages.length > 0 && (
-        <div >
-          {messages.map((msg, index) => (
-            <div className='bg-amber-50 border-2 rounded-lg justify-center items-center flex m-2 p-2' key={index}>{msg}</div>
-          ))}
-          <div className='flex justify-center items-center'>
-            <input
-              type="text"
-              className="border rounded-lg py-2 justify-center items-center flex m-1"
-              placeholder="Type your message here"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={handleKeyDown}
-            />
-            <button
-              onClick={sendMessage}
-              className="bg-blue-500 text-white rounded-lg px-4 py-2"
-            >
-              Send
-            </button>
-          </div>
+      <div >
+        {messages.map((msg, index) => (
+          <div className='bg-amber-50 border-2 rounded-lg justify-center items-center flex m-2 p-2' key={index}>{msg}</div>
+        ))}
+        <div className='flex justify-center items-center'>
+          <input
+            type="text"
+            className="border rounded-lg py-2 justify-center items-center flex m-1"
+            placeholder="Type your message here"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
+          <button
+            onClick={sendMessage}
+            className="bg-blue-500 text-white rounded-lg px-4 py-2"
+          >
+            Send
+          </button>
         </div>
-      )}
+      </div>
     </div>
     
   );
