@@ -11,6 +11,7 @@ export function Socket({
   const [messages, setMessages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const socket = new WebSocket(backendUrl);
+  console.log(backendUrl)
 
   useEffect(() => {
 
