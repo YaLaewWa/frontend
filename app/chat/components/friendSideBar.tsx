@@ -1,4 +1,4 @@
-import { User } from "lucide-react"
+import { Plus, Search, User, Users2 } from "lucide-react"
 
 import {
   Sidebar,
@@ -6,36 +6,34 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
 
+const baseUrl="/chat"
+
 // Fetch chat order and friend
 const items = [
   {
     title: "Friend1",
-    url: "#",
     icon: User,
   },
   {
     title: "Friend2",
-    url: "#",
     icon: User,
   },
   {
     title: "Friend3",
-    url: "#",
     icon: User,
   },
   {
     title: "Friend4",
-    url: "#",
     icon: User,
   },
   {
     title: "Friend5",
-    url: "#",
     icon: User,
   },
 ]
@@ -50,17 +48,22 @@ export function FriendSideBar({
 
   return (
     <Sidebar>
+      <SidebarHeader className="px-[20px] grid grid-cols-3">
+        <Search/>
+        <Users2/>
+        <Plus/>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} className={`${item.title === selectedUser ? "bg-gray-300" : ""}`}>
                   <SidebarMenuButton asChild>
-                    <a href={item.url}>
+                    <a href={`${baseUrl}?user=${item.title}`}>
                       <item.icon />
-                      <span className={`${item.title === selectedUser ? "bg-gray-600" : ""}`}>{item.title}</span>
+                      <span>{item.title}</span>
                     </a>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
