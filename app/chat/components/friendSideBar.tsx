@@ -1,5 +1,4 @@
 import { Plus, Search, User, Users2 } from "lucide-react"
-
 import {
   Sidebar,
   SidebarContent,
@@ -11,6 +10,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import Link from "next/link"
+import { HeaderButton } from "@/app/chat/components/headerButton"
 
 const baseUrl="/chat"
 
@@ -39,20 +40,23 @@ const items = [
 ]
 
 interface FriendSideBarProps{
-  selectedUser: string
+  selectedUser: string,
+  utilMode :string
 }
 
 export function FriendSideBar({
   selectedUser,
+  utilMode,
 } : FriendSideBarProps) {
+  
 
   return (
     <Sidebar>
-      <SidebarHeader className="px-[20px] grid grid-cols-3">
-        <Search/>
-        <Users2/>
-        <Plus/>
-      </SidebarHeader>
+        <SidebarHeader className="grid grid-cols-3">
+          <HeaderButton utilMode={utilMode} buttonMode="FRIEND" icon={<Users2/>} />
+          <HeaderButton utilMode={utilMode} buttonMode="SEARCH" icon={<Search/>} />
+          <HeaderButton utilMode={utilMode} buttonMode="GROUP" icon={<Plus/>} />
+        </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
@@ -61,10 +65,10 @@ export function FriendSideBar({
               {items.map((item) => (
                 <SidebarMenuItem key={item.title} className={`${item.title === selectedUser ? "bg-gray-300" : ""}`}>
                   <SidebarMenuButton asChild>
-                    <a href={`${baseUrl}?user=${item.title}`}>
+                    <Link href={`${baseUrl}?user=${item.title}`}>
                       <item.icon />
                       <span>{item.title}</span>
-                    </a>
+                    </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               ))}
