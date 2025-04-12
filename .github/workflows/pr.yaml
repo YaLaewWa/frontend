@@ -43,7 +43,7 @@ jobs:
 
       - name: Set Vercel env variables (optional)
         run: |
-          vercel env add BACKEND_URL production < echo ${{ secrets.BACKEND_URL }}
+          vercel env add BACKEND_URL preview < echo ${{ secrets.BACKEND_URL }}
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
