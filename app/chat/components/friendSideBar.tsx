@@ -1,4 +1,4 @@
-import { Plus, Search, User, Users2 } from "lucide-react"
+import { Plus, Search, User, Users2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -9,11 +9,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@/components/ui/sidebar"
-import Link from "next/link"
-import { HeaderButton } from "@/app/chat/components/headerButton"
+} from "@/components/ui/sidebar";
+import Link from "next/link";
+import { HeaderButton } from "@/app/chat/components/headerButton";
 
-const baseUrl="/chat"
+const baseUrl = "/chat";
 
 // Fetch chat order and friend
 const items = [
@@ -37,33 +37,41 @@ const items = [
     title: "Friend5",
     icon: User,
   },
-]
+];
 
-interface FriendSideBarProps{
-  selectedUser: string,
-  utilMode :string
+interface FriendSideBarProps {
+  selectedUser: string;
+  utilMode: string;
 }
 
-export function FriendSideBar({
-  selectedUser,
-  utilMode,
-} : FriendSideBarProps) {
-  
-
+export function FriendSideBar({ selectedUser, utilMode }: FriendSideBarProps) {
   return (
     <Sidebar>
-        <SidebarHeader className="grid grid-cols-3">
-          <HeaderButton utilMode={utilMode} buttonMode="FRIEND" icon={<Users2/>} />
-          <HeaderButton utilMode={utilMode} buttonMode="SEARCH" icon={<Search/>} />
-          <HeaderButton utilMode={utilMode} buttonMode="GROUP" icon={<Plus/>} />
-        </SidebarHeader>
+      <SidebarHeader className="grid grid-cols-3">
+        <HeaderButton
+          utilMode={utilMode}
+          buttonMode="FRIEND"
+          icon={<Users2 />}
+        />
+        <HeaderButton
+          utilMode={utilMode}
+          buttonMode="SEARCH"
+          icon={<Search />}
+        />
+        <HeaderButton utilMode={utilMode} buttonMode="GROUP" icon={<Plus />} />
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem key={item.title} className={`${item.title === selectedUser ? "bg-gray-300" : ""}`}>
+                <SidebarMenuItem
+                  key={item.title}
+                  className={`${
+                    item.title === selectedUser ? "bg-gray-300" : ""
+                  }`}
+                >
                   <SidebarMenuButton asChild>
                     <Link href={`${baseUrl}?user=${item.title}`}>
                       <item.icon />
@@ -77,5 +85,5 @@ export function FriendSideBar({
         </SidebarGroup>
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }
