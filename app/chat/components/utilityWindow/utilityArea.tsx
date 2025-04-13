@@ -1,7 +1,7 @@
-import { GroupWindow } from "@/app/chat/components/utilityWindow/addGroupWindow/groupWindow";
+import { CreateGroupWindow } from "@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow";
 import { ChatWindow } from "@/app/chat/components/utilityWindow/chatWindow/chatWindow";
 import { FriendWindow } from "@/app/chat/components/utilityWindow/friendWindow/friendWindow";
-import { SearchWindow } from "@/app/chat/components/utilityWindow/searchWindow/searchWindow";
+import { GroupWindow } from "@/app/chat/components/utilityWindow/groupWindow/groupWindow";
 
 interface UtitlityAreaProps {
   mode: string;
@@ -23,16 +23,16 @@ export function UtilityArea({ mode }: UtitlityAreaProps) {
   //         }
   //     </div>
   // );
-  if (mode === "SEARCH") {
-    return (
-      <div>
-        <SearchWindow />
-      </div>
-    );
-  } else if (mode === "GROUP") {
+  if (mode === "GROUP") {
     return (
       <div>
         <GroupWindow />
+      </div>
+    );
+  } else if (mode === "CREATE") {
+    return (
+      <div>
+        <CreateGroupWindow />
       </div>
     );
   } else if (mode === "FRIEND") {

@@ -1,7 +1,7 @@
 export function GroupWindow() {
   return (
     <div>
-      <p>This is group</p>
+      <p>This is search group</p>
     </div>
   );
 }

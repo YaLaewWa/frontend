@@ -15,7 +15,7 @@ import { unsortedUsersMock } from "@/app/chat/mocks/userSidebarMock";
 
 interface FriendSideBarProps {
   selectedUser: string;
-  utilMode: string;
+  currentMode: string;
 }
 
 // Fetch chat order and friend
@@ -31,21 +31,21 @@ const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
   return 0;
 });
 
-export function FriendSideBar({ selectedUser, utilMode }: FriendSideBarProps) {
+export function FriendSideBar({ selectedUser, currentMode }: FriendSideBarProps) {
   return (
     <Sidebar>
       <SidebarHeader className="grid grid-cols-3">
         <HeaderButton
-          utilMode={utilMode}
-          buttonMode="FRIEND"
+          currentMode={currentMode}
+          targetMode="FRIEND"
           icon={<Users2 />}
         />
         <HeaderButton
-          utilMode={utilMode}
-          buttonMode="SEARCH"
+          currentMode={currentMode}
+          targetMode="GROUP"
           icon={<Search />}
         />
-        <HeaderButton utilMode={utilMode} buttonMode="GROUP" icon={<Plus />} />
+        <HeaderButton currentMode={currentMode} targetMode="CREATE" icon={<Plus />} />
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>

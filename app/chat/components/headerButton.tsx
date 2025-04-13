@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 
 interface HeaderButtonProps {
-  utilMode: string;
-  buttonMode: string;
+  currentMode: string;
+  targetMode: string;
   icon: React.ReactNode;
 }
 
 export function HeaderButton({
-  utilMode,
-  buttonMode,
+  currentMode,
+  targetMode,
   icon,
 }: HeaderButtonProps) {
   const router = useRouter();
@@ -22,8 +22,8 @@ export function HeaderButton({
   return (
     <div className="flex mx-auto">
       <Button
-        disabled={utilMode === buttonMode}
-        onClick={() => changeMode(buttonMode)}
+        disabled={currentMode === targetMode}
+        onClick={() => changeMode(targetMode)}
       >
         {icon}
       </Button>

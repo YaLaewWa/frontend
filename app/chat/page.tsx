@@ -8,12 +8,12 @@ export default async function Page({
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
   const user = (await searchParams).user ?? "";
-  const utilMode = (await searchParams).mode ?? "CHAT";
+  const currentMode = (await searchParams).mode ?? "CHAT";
   return (
     <div>
       <SidebarProvider>
-        <FriendSideBar selectedUser={user} utilMode={utilMode} />
-        <UtilityArea mode={utilMode} />
+        <FriendSideBar selectedUser={user} currentMode={currentMode} />
+        <UtilityArea mode={currentMode} />
       </SidebarProvider>
     </div>
   );
