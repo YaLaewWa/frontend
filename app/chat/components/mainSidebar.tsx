@@ -13,7 +13,7 @@ import { FriendBar } from "@/app/chat/components/friendBar";
 import { FriendBarInterface } from "@/app/chat/types/UserClass";
 import { unsortedUsersMock } from "@/app/chat/mocks/userSidebarMock";
 
-interface FriendSideBarProps {
+interface MainSidebarProps {
   selectedUser: string;
   currentMode: string;
 }
@@ -31,10 +31,10 @@ const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
   return 0;
 });
 
-export function FriendSideBar({
+export function MainSidebar({
   selectedUser,
   currentMode,
-}: FriendSideBarProps) {
+}: MainSidebarProps) {
   return (
     <Sidebar>
       <SidebarHeader className="grid grid-cols-3">
