@@ -4,18 +4,22 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 
 interface FriendBarProp {
-  selectedUser: string;
+  currentUser: string;
   barUser: string;
   unread: number;
 }
 
-export function FriendBar({ selectedUser, barUser, unread }: FriendBarProp) {
+export function FriendBar({
+  currentUser,
+  barUser,
+  unread,
+}: FriendBarProp) {
   const router = useRouter();
   const baseUrl = "/chat";
   function changeChat(toUser: string) {
     router.push(`${baseUrl}?user=${toUser}`);
   }
-  const isSelected = selectedUser === barUser;
+  const isSelected = currentUser === barUser;
   return (
     <button
       onClick={() => changeChat(barUser)}
