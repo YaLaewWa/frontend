@@ -27,7 +27,7 @@ jobs:
           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && git pull origin main && exit"
       - name: Deploy
         run: |
-           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && (docker stop frontSocket || true) && (docker rm frontSocket || true) && docker build --tag socket . && docker run --name frontSocket -d -p ${{ secrets.PORT }} socket && exit"
+           ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && (docker stop frontSocket || true) && (docker rm frontSocket || true) && docker build --tag frontImage . && docker run --name frontSocket -d -p ${{ secrets.PORT }} frontImage && exit"
       - name: Clean up
         run:
          rm -rf ~/.ssh
