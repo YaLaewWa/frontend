@@ -15,7 +15,7 @@ export function FriendBar({ selectedUser, barUser, unread }: FriendBarProp) {
   function changeChat(toUser: string) {
     router.push(`${baseUrl}?user=${toUser}`);
   }
-  const isSelected = selectedUser === barUser
+  const isSelected = selectedUser === barUser;
   return (
     <button
       onClick={() => changeChat(barUser)}
@@ -31,14 +31,15 @@ export function FriendBar({ selectedUser, barUser, unread }: FriendBarProp) {
           </AvatarFallback>
         </Avatar>
         <p className="self-center pl-[10px]">{barUser}</p>
-        {isSelected ?
-            <div/>
-        :
-        <div className="flex-1 flex self-center justify-end pr-[10px]">
-            <p className="bg-gray-600 rounded-full p-[4px] text-white border">{unread}</p>
-        </div>
-        }
-        
+        {isSelected ? (
+          <div />
+        ) : (
+          <div className="flex-1 flex self-center justify-end pr-[10px]">
+            <p className="bg-gray-600 rounded-full p-[4px] text-white border">
+              {unread}
+            </p>
+          </div>
+        )}
       </div>
     </button>
   );
