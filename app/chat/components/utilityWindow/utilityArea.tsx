@@ -4,10 +4,10 @@ import { FriendWindow } from "@/app/chat/components/utilityWindow/friendWindow/f
 import { GroupWindow } from "@/app/chat/components/utilityWindow/groupWindow/groupWindow";
 
 interface UtitlityAreaProps {
-  mode: string;
+  currentMode: string;
 }
 
-export function UtilityArea({ mode }: UtitlityAreaProps) {
+export function UtilityArea({ currentMode }: UtitlityAreaProps) {
   // There are 2 method to choose but the later one is more readable
   // return (
   //     <div>
@@ -23,19 +23,19 @@ export function UtilityArea({ mode }: UtitlityAreaProps) {
   //         }
   //     </div>
   // );
-  if (mode === "GROUP") {
+  if (currentMode === "GROUP") {
     return (
       <div>
         <GroupWindow />
       </div>
     );
-  } else if (mode === "CREATE") {
+  } else if (currentMode === "CREATE") {
     return (
       <div>
         <CreateGroupWindow />
       </div>
     );
-  } else if (mode === "FRIEND") {
+  } else if (currentMode === "FRIEND") {
     return (
       <div>
         <FriendWindow />
