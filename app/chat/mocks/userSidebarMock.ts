@@ -7,12 +7,12 @@ export const unsortedUsersMock = [
     {
       username: "Friend2",
       timestamp: new Date("2024-04-19T07:12:30Z"),
-      unread: 12
+      unread: 112
     },
     {
       username: "Friend3",
       timestamp: new Date("2025-02-03T22:45:11Z"),
-      unread: 7
+      unread: 7890
     },
     {
       username: "Friend4",
