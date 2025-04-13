@@ -13,7 +13,7 @@ export default async function Page({
     <div>
       <SidebarProvider>
         <FriendSideBar selectedUser={user} utilMode={utilMode} />
-        <UtilityArea />
+        <UtilityArea mode={utilMode} />
       </SidebarProvider>
     </div>
   );
