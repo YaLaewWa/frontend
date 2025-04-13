@@ -8,6 +8,7 @@ interface UtitlityAreaProps {
 }
 
 export function UtilityArea({ mode }: UtitlityAreaProps) {
+  // There are 2 method to choose but the later one is more readable
   // return (
   //     <div>
   //         {mode ==="SEARCH" ?
