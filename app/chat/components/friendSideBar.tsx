@@ -1,4 +1,4 @@
-import { Plus, Search, User, Users2 } from "lucide-react";
+import { Plus, Search, Users2 } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -10,37 +10,26 @@ import {
 } from "@/components/ui/sidebar";
 import { HeaderButton } from "@/app/chat/components/headerButton";
 import { FriendBar } from "@/app/chat/components/friendBar";
-
-const baseUrl = "/chat";
-
-// Fetch chat order and friend
-const items = [
-  {
-    title: "Friend1",
-    icon: User,
-  },
-  {
-    title: "Friend2",
-    icon: User,
-  },
-  {
-    title: "Friend3",
-    icon: User,
-  },
-  {
-    title: "Friend4",
-    icon: User,
-  },
-  {
-    title: "Friend5",
-    icon: User,
-  },
-];
+import { FriendBarInterface } from "@/app/chat/classes/UserClass";
+import { unsortedUsersMock } from "@/app/chat/mocks/userSidebarMock";
 
 interface FriendSideBarProps {
   selectedUser: string;
   utilMode: string;
 }
+
+// Fetch chat order and friend
+const unsortedUsers: FriendBarInterface[] = unsortedUsersMock;
+
+var sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
+  if (n1.timestamp < n2.timestamp) {
+    return 1;
+  } else if (n1.timestamp > n2.timestamp) {
+    return -1;
+  }
+
+  return 0;
+});
 
 export function FriendSideBar({ selectedUser, utilMode }: FriendSideBarProps) {
   return (
@@ -63,11 +52,12 @@ export function FriendSideBar({ selectedUser, utilMode }: FriendSideBarProps) {
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {items.map((item) => (
+              {sortedUsers.map((user) => (
                 <FriendBar
-                  key={item.title}
+                  key={user.username}
                   selectedUser={selectedUser}
-                  barUser={item.title}
+                  barUser={user.username}
+                  unread={user.unread}
                 />
               ))}
             </SidebarMenu>
