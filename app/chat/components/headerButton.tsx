@@ -16,14 +16,14 @@ export function HeaderButton({
 }: HeaderButtonProps) {
   const router = useRouter();
   const baseUrl = "/chat";
-  function changeParams(path: string) {
-    router.push(`${baseUrl}${path}`);
+  function changeMode(path: string) {
+    router.push(`${baseUrl}?mode=${path}`);
   }
   return (
     <div className="flex mx-auto">
       <Button
         disabled={utilMode === buttonMode}
-        onClick={() => changeParams(`?mode=${buttonMode}`)}
+        onClick={() => changeMode(buttonMode)}
       >
         {icon}
       </Button>
