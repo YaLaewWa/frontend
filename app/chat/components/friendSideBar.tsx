@@ -7,11 +7,9 @@ import {
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import Link from "next/link";
 import { HeaderButton } from "@/app/chat/components/headerButton";
+import { FriendBar } from "@/app/chat/components/friendBar";
 
 const baseUrl = "/chat";
 
@@ -66,19 +64,11 @@ export function FriendSideBar({ selectedUser, utilMode }: FriendSideBarProps) {
           <SidebarGroupContent>
             <SidebarMenu>
               {items.map((item) => (
-                <SidebarMenuItem
+                <FriendBar
                   key={item.title}
-                  className={`${
-                    item.title === selectedUser ? "bg-gray-300" : ""
-                  }`}
-                >
-                  <SidebarMenuButton asChild>
-                    <Link href={`${baseUrl}?user=${item.title}`}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
+                  selectedUser={selectedUser}
+                  barUser={item.title}
+                />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
