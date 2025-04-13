@@ -35,7 +35,7 @@ export function FriendBar({ selectedUser, barUser, unread }: FriendBarProp) {
           <div />
         ) : (
           <div className="flex-1 flex self-center justify-end pr-[10px]">
-            <p className="bg-gray-600 rounded-full p-[4px] text-white border">
+            <p className="bg-gray-600 rounded-full p-[4px] text-white border text-xs">
               {unread}
             </p>
           </div>
