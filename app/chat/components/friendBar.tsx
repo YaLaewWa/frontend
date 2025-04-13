@@ -1,5 +1,6 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useRouter } from "next/navigation";
 
 interface FriendBarProp {
@@ -21,7 +22,14 @@ export function FriendBar({ selectedUser, barUser }: FriendBarProp) {
         selectedUser === barUser ? "bg-gray-300" : "hover:bg-gray-200"
       }`}
     >
-      {barUser}
+      <div className="flex">
+        <Avatar className="items-center w-[40px] h-[40px] border">
+          <AvatarFallback>
+            {barUser.split(" ").map((e) => e.charAt(0))}
+          </AvatarFallback>
+        </Avatar>
+        <p className="self-center pl-[10px]">{barUser}</p>
+      </div>
     </button>
   );
 }
