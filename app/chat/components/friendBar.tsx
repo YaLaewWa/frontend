@@ -22,7 +22,7 @@ export function FriendBar({ selectedUser, barUser }: FriendBarProp) {
         selectedUser === barUser ? "bg-gray-300" : "hover:bg-gray-200"
       }`}
     >
-      <div className="flex">
+      <div className="flex pl-[5px]">
         <Avatar className="items-center w-[40px] h-[40px] border">
           <AvatarFallback>
             {barUser.split(" ").map((e) => e.charAt(0))}
