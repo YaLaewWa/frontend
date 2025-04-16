@@ -5,7 +5,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function ChatWindow() {
   const currentUser = "Friend0";
-  const unsortedChats:messageInterface[] = chatMock2.chat;
+  const unsortedChats:messageInterface[] = chatMock.chat;
   const sortedChats: messageInterface[] = unsortedChats.sort((n1, n2) => {
     if (n1.timestamp > n2.timestamp) {
       return 1;
