@@ -28,6 +28,7 @@ export function SendMessageField() {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    form.reset({message:""})
   }
   return (
     <div className="h-[75px] w-[calc(100vw-256px)] fixed bg-white">
