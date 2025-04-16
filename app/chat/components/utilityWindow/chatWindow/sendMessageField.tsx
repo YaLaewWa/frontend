@@ -13,12 +13,18 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { SendHorizonal } from "lucide-react";
+import { Dispatch, SetStateAction } from "react";
 
 const formSchema = z.object({
   message: z.string().min(1),
 });
 
-export function SendMessageField() {
+
+interface SendMessageFieldProps{
+  updateFunction: Dispatch<SetStateAction<messageInterface[]>>
+  messageArray: messageInterface[]
+}
+export function SendMessageField({updateFunction, messageArray} : SendMessageFieldProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -27,7 +33,11 @@ export function SendMessageField() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    updateFunction([...messageArray,{
+      sender: "Friend0",
+      timestamp: new Date,
+      message: values.message
+    }])
     form.reset({message:""})
   }
   return (
