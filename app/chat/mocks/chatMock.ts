@@ -44,13 +44,18 @@ export const chatMock = {
         },
         {
             sender : "Friend0",
-            timestamp : new Date("2023-11-08T14:27:53Z"),
+            timestamp : new Date("2023-11-08T15:27:53Z"),
             message : "See yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         },
         {
             sender : "Friend1",
-            timestamp : new Date("2023-11-08T14:27:53Z"),
+            timestamp : new Date("2023-11-08T15:27:53Z"),
             message : "See yaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         },
     ]
+}
+export const chatMock2 = {
+    usernameA : "Friend0",
+    usernameB : "Friend1",
+    chat : []
 }
