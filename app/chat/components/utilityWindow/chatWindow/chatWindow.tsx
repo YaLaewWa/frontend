@@ -1,5 +1,7 @@
 import { MessageBox } from "@/app/chat/components/utilityWindow/chatWindow/messageBox";
+import { SendMessageField } from "@/app/chat/components/utilityWindow/chatWindow/sendMessageField";
 import { chatMock } from "@/app/chat/mocks/chatMock";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 export function ChatWindow() {
   const currentUser = "Friend0";
@@ -14,16 +16,21 @@ export function ChatWindow() {
     return 0;
   });
   return (
-    <div className="w-full">
-      {sortedChats.map((message) => (
-        <MessageBox
-          key={currentUser + message.timestamp}
-          currentUser={currentUser}
-          sender={message.sender}
-          timestamp={message.timestamp}
-          message={message.message}
-        />
-      ))}
+    <div className="w-full h-screen">
+      <ScrollArea className="h-[calc(100vh-75px)]">
+        <div className="">
+          {sortedChats.map((message) => (
+            <MessageBox
+              key={currentUser + message.timestamp}
+              currentUser={currentUser}
+              sender={message.sender}
+              timestamp={message.timestamp}
+              message={message.message}
+            />
+          ))}
+        </div>
+      </ScrollArea>
+      <SendMessageField />
     </div>
   );
 }
