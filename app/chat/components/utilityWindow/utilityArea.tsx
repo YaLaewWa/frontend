@@ -24,28 +24,12 @@ export function UtilityArea({ currentMode }: UtitlityAreaProps) {
   //     </div>
   // );
   if (currentMode === "GROUP") {
-    return (
-      <div>
-        <GroupWindow />
-      </div>
-    );
+    return <GroupWindow />;
   } else if (currentMode === "CREATE") {
-    return (
-      <div>
-        <CreateGroupWindow />
-      </div>
-    );
+    return <CreateGroupWindow />;
   } else if (currentMode === "FRIEND") {
-    return (
-      <div>
-        <FriendWindow />
-      </div>
-    );
+    return <FriendWindow />;
   } else {
-    return (
-      <div>
-        <ChatWindow />
-      </div>
-    );
+    return <ChatWindow />;
   }
 }
