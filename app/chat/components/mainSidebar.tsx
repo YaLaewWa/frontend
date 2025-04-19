@@ -33,7 +33,7 @@ const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
 });
 
 export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
-  const myUsername = "FRIEND0";
+  const myUser = "Friend0";
   return (
     <Sidebar>
       <SidebarHeader className="grid grid-cols-3">
@@ -70,7 +70,7 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <ControlBar user={myUsername} />
+      <ControlBar user={myUser} />
     </Sidebar>
   );
 }

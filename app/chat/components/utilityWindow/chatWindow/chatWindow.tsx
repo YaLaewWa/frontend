@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { MessageBox } from "@/app/chat/components/utilityWindow/chatWindow/messageBox";
 import { SendMessageField } from "@/app/chat/components/utilityWindow/chatWindow/sendMessageField";
 import { chatMock, chatMock2 } from "@/app/chat/mocks/chatMock";
@@ -6,8 +6,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 
 export function ChatWindow() {
-  const currentUser = "Friend0";
-  const unsortedChats: messageInterface[] = chatMock.chat;    //Fetch old message
+  const myUser = "Friend0";
+  const unsortedChats: messageInterface[] = chatMock.chat; //Fetch old message
   const sortedChats: messageInterface[] = unsortedChats.sort((n1, n2) => {
     if (n1.timestamp > n2.timestamp) {
       return 1;
@@ -24,8 +24,8 @@ export function ChatWindow() {
         <div className="">
           {displayChats.map((message) => (
             <MessageBox
-              key={currentUser + message.timestamp}
-              currentUser={currentUser}
+              key={myUser + message.timestamp}
+              myUser={myUser}
               sender={message.sender}
               timestamp={message.timestamp}
               message={message.message}
@@ -33,7 +33,10 @@ export function ChatWindow() {
           ))}
         </div>
       </ScrollArea>
-      <SendMessageField messageArray={displayChats} updateFunction={setDisplayChats}/>
+      <SendMessageField
+        messageArray={displayChats}
+        updateFunction={setDisplayChats}
+      />
     </div>
   );
 }

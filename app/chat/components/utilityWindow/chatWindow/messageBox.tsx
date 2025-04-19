@@ -1,16 +1,16 @@
 interface MessageBoxProp {
-  currentUser: string;
+  myUser: string;
   sender: string;
   timestamp: Date;
   message: string;
 }
 export function MessageBox({
-  currentUser,
+  myUser,
   sender,
   timestamp,
   message,
 }: MessageBoxProp) {
-  const userIsSender = sender === currentUser;
+  const userIsSender = sender === myUser;
   // if (sender === currentUser) {
   return (
     <div className={`flex my-1 ${userIsSender ? "justify-end" : ""}`}>
