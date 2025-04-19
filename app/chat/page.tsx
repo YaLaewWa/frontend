@@ -13,7 +13,7 @@ export default async function Page({
     <div>
       <SidebarProvider>
         <MainSidebar currentUser={currentUser} currentMode={currentMode} />
-        <UtilityArea currentMode={currentMode} />
+        <UtilityArea currentUser={currentUser} currentMode={currentMode} />
       </SidebarProvider>
     </div>
   );
