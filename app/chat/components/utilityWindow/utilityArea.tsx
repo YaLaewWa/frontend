@@ -31,6 +31,6 @@ export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   } else if (currentMode === "FRIEND") {
     return <FriendWindow />;
   } else {
-    return <ChatWindow currentUser={currentUser}/>;
+    return <ChatWindow currentUser={currentUser} />;
   }
 }
