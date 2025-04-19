@@ -4,10 +4,11 @@ import { FriendWindow } from "@/app/chat/components/utilityWindow/friendWindow/f
 import { GroupWindow } from "@/app/chat/components/utilityWindow/groupWindow/groupWindow";
 
 interface UtitlityAreaProps {
+  currentUser: string;
   currentMode: string;
 }
 
-export function UtilityArea({ currentMode }: UtitlityAreaProps) {
+export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   // There are 2 method to choose but the later one is more readable
   // return (
   //     <div>
@@ -30,6 +31,6 @@ export function UtilityArea({ currentMode }: UtitlityAreaProps) {
   } else if (currentMode === "FRIEND") {
     return <FriendWindow />;
   } else {
-    return <ChatWindow />;
+    return <ChatWindow currentUser={currentUser}/>;
   }
 }
