@@ -21,6 +21,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/router";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -32,6 +34,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,8 +43,17 @@ export function LoginForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await signIn("credentials", {
+      redirect: false,
+      username: values.username,
+      password: values.password,
+    });
+    if (res?.error) {
+      console.error(res.error);
+    } else {
+      router.push("/chat");
+    }
   }
 
   return (
