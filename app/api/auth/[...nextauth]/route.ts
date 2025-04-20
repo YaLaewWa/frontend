@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         if (!credentials) return null;
         const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
           method: "POST",
