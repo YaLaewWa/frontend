@@ -1,4 +1,4 @@
-import { SocketHandler } from "@/components/global/socketHandler";
+import { SocketHandler } from '@/components/global/socketHandler';
 
 export default function Page() {
   return (

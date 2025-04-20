@@ -1,45 +1,50 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { SendHorizonal } from "lucide-react";
-import { Dispatch, SetStateAction } from "react";
-import { MessageInterface } from "@/app/chat/types/Chat";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { SendHorizonal } from 'lucide-react';
+import { Dispatch, SetStateAction } from 'react';
+import { MessageInterface } from '@/app/chat/types/Chat';
 
 const formSchema = z.object({
   message: z.string().min(1),
 });
 
-
-interface SendMessageFieldProps{
-  updateFunction: Dispatch<SetStateAction<MessageInterface[]>>
-  messageArray: MessageInterface[]
+interface SendMessageFieldProps {
+  updateFunction: Dispatch<SetStateAction<MessageInterface[]>>;
+  messageArray: MessageInterface[];
 }
-export function SendMessageField({updateFunction, messageArray} : SendMessageFieldProps) {
+export function SendMessageField({
+  updateFunction,
+  messageArray,
+}: SendMessageFieldProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      message: "",
+      message: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    updateFunction([...messageArray,{
-      sender: "Friend0",
-      timestamp: new Date,
-      message: values.message
-    }])
-    form.reset({message:""})
+    updateFunction([
+      ...messageArray,
+      {
+        sender: 'Friend0',
+        timestamp: new Date(),
+        message: values.message,
+      },
+    ]);
+    form.reset({ message: '' });
   }
   return (
     <div className="h-[75px] w-[calc(100vw-256px)] fixed bg-white">

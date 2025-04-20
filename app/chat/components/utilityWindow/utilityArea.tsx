@@ -1,7 +1,7 @@
-import { CreateGroupWindow } from "@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow";
-import { ChatWindow } from "@/app/chat/components/utilityWindow/chatWindow/chatWindow";
-import { FriendWindow } from "@/app/chat/components/utilityWindow/friendWindow/friendWindow";
-import { GroupWindow } from "@/app/chat/components/utilityWindow/groupWindow/groupWindow";
+import { CreateGroupWindow } from '@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow';
+import { ChatWindow } from '@/app/chat/components/utilityWindow/chatWindow/chatWindow';
+import { FriendWindow } from '@/app/chat/components/utilityWindow/friendWindow/friendWindow';
+import { GroupWindow } from '@/app/chat/components/utilityWindow/groupWindow/groupWindow';
 
 interface UtitlityAreaProps {
   currentUser: string;
@@ -24,11 +24,11 @@ export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   //         }
   //     </div>
   // );
-  if (currentMode === "GROUP") {
+  if (currentMode === 'GROUP') {
     return <GroupWindow />;
-  } else if (currentMode === "CREATE") {
+  } else if (currentMode === 'CREATE') {
     return <CreateGroupWindow />;
-  } else if (currentMode === "FRIEND") {
+  } else if (currentMode === 'FRIEND') {
     return <FriendWindow />;
   } else {
     return <ChatWindow currentUser={currentUser} />;

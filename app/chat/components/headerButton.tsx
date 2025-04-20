@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
+import { Button } from '@/components/ui/button';
+import { useRouter } from 'next/navigation';
 
 interface HeaderButtonProps {
   currentMode: string;
@@ -15,7 +15,7 @@ export function HeaderButton({
   icon,
 }: HeaderButtonProps) {
   const router = useRouter();
-  const baseUrl = "/chat";
+  const baseUrl = '/chat';
   function changeMode(path: string) {
     router.push(`${baseUrl}?mode=${path}`);
   }
