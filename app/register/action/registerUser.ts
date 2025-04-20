@@ -14,7 +14,6 @@ export async function registerUser(values: {
     }),
   });
   const data = await res.json();
-  console.log(res);
   if (res.ok && data) {
     return;
   } else if (!res.ok) {
