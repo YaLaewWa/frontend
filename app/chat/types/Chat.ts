@@ -1,4 +1,4 @@
-interface messageInterface{
+export interface MessageInterface{
     sender: string
     timestamp: Date
     message: string

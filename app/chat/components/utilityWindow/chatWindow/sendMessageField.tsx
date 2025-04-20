@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { SendHorizonal } from "lucide-react";
 import { Dispatch, SetStateAction } from "react";
+import { MessageInterface } from "@/app/chat/types/Chat";
 
 const formSchema = z.object({
   message: z.string().min(1),
@@ -21,8 +22,8 @@ const formSchema = z.object({
 
 
 interface SendMessageFieldProps{
-  updateFunction: Dispatch<SetStateAction<messageInterface[]>>
-  messageArray: messageInterface[]
+  updateFunction: Dispatch<SetStateAction<MessageInterface[]>>
+  messageArray: MessageInterface[]
 }
 export function SendMessageField({updateFunction, messageArray} : SendMessageFieldProps) {
   const form = useForm<z.infer<typeof formSchema>>({
