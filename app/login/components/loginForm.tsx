@@ -66,10 +66,6 @@ export function LoginForm() {
                     <FormControl>
                       <Input placeholder="Joker1234" {...field} />
                     </FormControl>
-                    <FormDescription>
-                      This is your public display name.
-                    </FormDescription>
-                    <FormMessage />
                   </FormItem>
                 )}
               />
