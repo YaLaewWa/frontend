@@ -6,7 +6,7 @@ declare module "next-auth" {
     user: {
       username?: string;
       accessToken?: string;
-    }
+    };
   }
 
   interface User {
@@ -22,7 +22,7 @@ declare module "next-auth/jwt" {
   }
 }
 
-export const authOptions: NextAuthOptions  = {
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -46,10 +46,10 @@ export const authOptions: NextAuthOptions  = {
         if (res.ok && user) {
           return user;
         }
-        
+
         return null;
       },
-    })
+    }),
   ],
   session: {
     strategy: "jwt",
@@ -58,7 +58,7 @@ export const authOptions: NextAuthOptions  = {
     jwt: async ({ token, user }) => {
       if (user) {
         token.username = user.username;
-        token.accessToken = user.accessToken
+        token.accessToken = user.accessToken;
       }
       return token;
     },
@@ -71,8 +71,6 @@ export const authOptions: NextAuthOptions  = {
     },
   },
 };
-
-
 
 const handler = NextAuth(authOptions);
 
