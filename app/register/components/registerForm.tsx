@@ -62,7 +62,9 @@ export function RegisterForm() {
     if (!res) {
       router.push("/login");
     } else {
-      toast.error(res.message);
+      toast.error("Error", {
+        description: res.message,
+      });
     }
   }
 

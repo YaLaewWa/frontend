@@ -46,7 +46,9 @@ export function LoginForm() {
       password: values.password,
     });
     if (res?.error) {
-      toast.error(res.error);
+      toast.error("Error", {
+        description: res.error,
+      });
     } else {
       router.push("/chat");
     }
