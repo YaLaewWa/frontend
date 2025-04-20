@@ -1,23 +1,25 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
+interface UserData {
+  username: string;
+}
+
 declare module "next-auth" {
   interface Session {
-    user: {
-      username?: string;
-      accessToken?: string;
-    };
+    user?: UserData;
+    accessToken?: string;
   }
 
   interface User {
-    username?: string;
+    user?: UserData;
     accessToken?: string;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    username?: string;
+    user?: UserData;
     accessToken?: string;
   }
 }
@@ -32,7 +34,7 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         if (!credentials) return null;
-        const res = await fetch("/auth/login", {
+        const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -57,15 +59,15 @@ export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
-        token.username = user.username;
+        token.user = user.user;
         token.accessToken = user.accessToken;
       }
       return token;
     },
     session: async ({ session, token }) => {
       if (session.user) {
-        session.user.username = token.username;
-        session.user.accessToken = token.accessToken;
+        session.user = token.user;
+        session.accessToken = token.accessToken;
       }
       return session;
     },
