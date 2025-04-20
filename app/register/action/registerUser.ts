@@ -1,5 +1,8 @@
 "use server";
-export async function registerUser(values: any) {
+export async function registerUser(values: {
+  username: string;
+  password: string;
+}) {
   const res = await fetch(`${process.env.BACKEND_URL}/register`, {
     method: "POST",
     headers: {
