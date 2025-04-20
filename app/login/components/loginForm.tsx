@@ -21,6 +21,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import Link from "next/link";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -92,6 +93,12 @@ export function LoginForm() {
             </div>
           </form>
         </Form>
+        <div className="mt-4 text-center text-sm">
+          Don&apos;t have an account?{" "}
+          <Link href="/register" className="underline underline-offset-4">
+            Sign up
+          </Link>
+        </div>
       </CardContent>
     </Card>
   );
