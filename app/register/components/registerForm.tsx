@@ -24,6 +24,7 @@ import {
 import Link from "next/link";
 import { registerUser } from "@/app/register/action/registerUser";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 const formSchema = z
   .object({
@@ -61,7 +62,7 @@ export function RegisterForm() {
     if (!res) {
       router.push("/login");
     } else {
-      console.log(res.message);
+      toast.error(res.message);
     }
   }
 
