@@ -1,5 +1,5 @@
-import { LogOutIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { LogOutIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import {
   Dialog,
   DialogContent,
@@ -8,17 +8,14 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from '@/components/ui/dialog';
 
 export function LogoutButton() {
-  function logout() {
-    console.log("Logout!");
-  }
   return (
     <Dialog>
       <DialogTrigger asChild>
         <div className="self-center rounded-full bg-white p-2 border">
-          <LogOutIcon color={"black"} strokeWidth={"3px"} />
+          <LogOutIcon color={'black'} strokeWidth={'3px'} />
         </div>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">

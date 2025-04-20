@@ -1,11 +1,11 @@
-interface messageInterface{
-    sender: string
-    timestamp: Date
-    message: string
+export interface MessageInterface {
+  sender: string;
+  timestamp: Date;
+  message: string;
 }
 
-interface ChatInterface{
-    usernameA: string
-    usernameB: string
-    chat: messageInterface[]
-}
+// interface ChatInterface{
+//     usernameA: string
+//     usernameB: string
+//     chat: messageInterface[]
+// }
