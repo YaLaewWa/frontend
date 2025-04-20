@@ -25,8 +25,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  username: z.string().min(2),
-  password: z.string().min(9),
+  username: z.string().min(1),
+  password: z.string().min(8),
 });
 
 export function LoginForm() {
