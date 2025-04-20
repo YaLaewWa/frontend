@@ -45,10 +45,9 @@ export const authOptions: NextAuthOptions = {
           }),
         });
         const user = await res.json();
-        if (!user){
+        if (!user) {
           throw new Error("Something is wrong");
-        }
-        else if (!res.ok){
+        } else if (!res.ok) {
           throw new Error(user.error);
         }
         return user;
