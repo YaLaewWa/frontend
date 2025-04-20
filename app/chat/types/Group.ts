@@ -1,6 +1,6 @@
-interface GroupCardInterface{
-    groupName: string
-    members: {
-        username: string
-    }[]
+interface GroupCardInterface {
+  groupName: string;
+  members: {
+    username: string;
+  }[];
 }
