@@ -1,7 +1,7 @@
 "use client";
 import { MessageBox } from "@/app/chat/components/utilityWindow/chatWindow/messageBox";
 import { SendMessageField } from "@/app/chat/components/utilityWindow/chatWindow/sendMessageField";
-import { chatMock, chatMock2 } from "@/app/chat/mocks/chatMock";
+import { chatMock } from "@/app/chat/mocks/chatMock";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useState } from "react";
 

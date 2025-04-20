@@ -4,8 +4,8 @@ interface messageInterface{
     message: string
 }
 
-interface ChatInterface{
-    usernameA: string
-    usernameB: string
-    chat: messageInterface[]
-}
+// interface ChatInterface{
+//     usernameA: string
+//     usernameB: string
+//     chat: messageInterface[]
+// }
