@@ -22,6 +22,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import Link from "next/link";
+import { registerUser } from "@/app/register/action/registerUser";
+import { useRouter } from "next/navigation";
 
 const formSchema = z
   .object({
@@ -44,6 +46,7 @@ const formSchema = z
   });
 
 export function RegisterForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -53,8 +56,13 @@ export function RegisterForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const res = await registerUser(values);
+    if (!res) {
+      router.push("/login");
+    } else {
+      console.log(res.message);
+    }
   }
 
   return (
