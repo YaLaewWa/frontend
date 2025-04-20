@@ -22,7 +22,7 @@ import {
 } from "@/components/ui/card";
 import Link from "next/link";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   username: z.string().min(2, {
@@ -50,7 +50,7 @@ export function LoginForm() {
       password: values.password,
     });
     if (res?.error) {
-      console.error(res.error);
+      console.log(res.error);
     } else {
       router.push("/chat");
     }
