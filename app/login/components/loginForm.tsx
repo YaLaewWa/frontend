@@ -79,14 +79,16 @@ export function LoginForm() {
                   <FormItem>
                     <FormLabel>Password</FormLabel>
                     <FormControl>
-                      <Input {...field}  type="password"/>
+                      <Input {...field} type="password" />
                     </FormControl>
                   </FormItem>
                 )}
               />
             </div>
             <div className="">
-              <Button className="w-full" type="submit">Login</Button>
+              <Button className="w-full" type="submit">
+                Login
+              </Button>
             </div>
           </form>
         </Form>
