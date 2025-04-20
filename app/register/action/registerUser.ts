@@ -1,4 +1,4 @@
-'use server'
+"use server";
 export async function registerUser(values: any) {
   const res = await fetch(`${process.env.BACKEND_URL}/register`, {
     method: "POST",
@@ -11,14 +11,12 @@ export async function registerUser(values: any) {
     }),
   });
   const data = await res.json();
-  console.log(res)
+  console.log(res);
   if (res.ok && data) {
     return;
-  }
-  else if (!res.ok){
-    return {message : data.error};
-  }
-  else{
-    return {message : "Something is wrong"}
+  } else if (!res.ok) {
+    return { message: data.error };
+  } else {
+    return { message: "Something is wrong" };
   }
 }
