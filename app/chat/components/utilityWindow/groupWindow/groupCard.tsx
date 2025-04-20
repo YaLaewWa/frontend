@@ -15,7 +15,7 @@ import React from 'react';
 
 export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
   return (
-    <div className="flex border-2 hover:border-gray-700 rounded-xl p-3 items-end">
+    <div className="flex border-2 hover:border-gray-700 rounded-xl p-3 items-center">
       <Dialog>
         <DialogTrigger asChild>
           <div className="w-full gap-2 flex flex-col hover:cursor-pointer">
@@ -68,7 +68,7 @@ export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
         </DialogContent>
       </Dialog>
 
-      <Button>Join</Button>
+      <Button className="mr-5 p-5">Join</Button>
     </div>
   );
 };
