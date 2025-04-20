@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/dialog";
 
 export function LogoutButton() {
-  function logout() {
-    console.log("Logout!");
-  }
+  // function logout() {
+  //   console.log("Logout!");
+  // }
   return (
     <Dialog>
       <DialogTrigger asChild>
