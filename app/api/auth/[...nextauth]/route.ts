@@ -50,7 +50,7 @@ export const authOptions: NextAuthOptions = {
         } else if (!res.ok) {
           throw new Error(user.error);
         }
-        return user;
+        return user.data;
       },
     }),
   ],
