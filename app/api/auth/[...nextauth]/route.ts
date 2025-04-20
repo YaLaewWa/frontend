@@ -45,11 +45,13 @@ export const authOptions: NextAuthOptions = {
           }),
         });
         const user = await res.json();
-        if (res.ok && user) {
-          return user;
+        if (!user){
+          throw new Error("Something is wrong");
         }
-
-        return null;
+        else if (!res.ok){
+          throw new Error(user.error);
+        }
+        return user;
       },
     }),
   ],
