@@ -101,6 +101,7 @@ export function RegisterForm() {
                     <FormControl>
                       <Input {...field} type="password" />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -113,6 +114,7 @@ export function RegisterForm() {
                     <FormControl>
                       <Input {...field} type="password" />
                     </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
