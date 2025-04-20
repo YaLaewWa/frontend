@@ -1,5 +1,6 @@
+'use server'
 export async function registerUser(values: any) {
-  const res = await fetch(`${process.env.BACKEND_URL}/auth/register`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -10,8 +11,14 @@ export async function registerUser(values: any) {
     }),
   });
   const data = await res.json();
+  console.log(res)
   if (res.ok && data) {
     return;
   }
-  return { message: data.error };
+  else if (!res.ok){
+    return {message : data.error};
+  }
+  else{
+    return {message : "Something is wrong"}
+  }
 }
