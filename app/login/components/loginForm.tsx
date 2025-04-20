@@ -25,12 +25,8 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-  password: z.string().min(4, {
-    message: "Password must be at least 4 characters",
-  }),
+  username: z.string().min(2),
+  password: z.string().min(9),
 });
 
 export function LoginForm() {

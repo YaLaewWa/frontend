@@ -31,10 +31,10 @@ const formSchema = z
     username: z.string().min(2, {
       message: "Username must be at least 2 characters.",
     }),
-    password: z.string().min(4, {
-      message: "Password must be at least 4 characters",
+    password: z.string().min(9, {
+      message: "Password must be at least 9 characters",
     }),
-    confirmPassword: z.string().min(4),
+    confirmPassword: z.string().min(9),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
