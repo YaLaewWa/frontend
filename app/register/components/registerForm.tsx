@@ -49,6 +49,7 @@ export function RegisterForm() {
     defaultValues: {
       username: "",
       password: "",
+      confirmPassword: "",
     },
   });
 
