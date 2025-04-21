@@ -1,11 +1,11 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
 
 interface UserData {
   username: string;
 }
 
-declare module "next-auth" {
+declare module 'next-auth' {
   interface Session {
     user?: UserData;
     accessToken?: string;
@@ -17,7 +17,7 @@ declare module "next-auth" {
   }
 }
 
-declare module "next-auth/jwt" {
+declare module 'next-auth/jwt' {
   interface JWT {
     user?: UserData;
     accessToken?: string;
@@ -27,17 +27,17 @@ declare module "next-auth/jwt" {
 export const authOptions: NextAuthOptions = {
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
         if (!credentials) return null;
         const res = await fetch(`${process.env.BACKEND_URL}/auth/login`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({
             username: credentials.username,
@@ -46,7 +46,7 @@ export const authOptions: NextAuthOptions = {
         });
         const user = await res.json();
         if (!user) {
-          throw new Error("Something is wrong");
+          throw new Error('Something is wrong');
         } else if (!res.ok) {
           throw new Error(user.error);
         }
@@ -55,7 +55,7 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   callbacks: {
     jwt: async ({ token, user }) => {

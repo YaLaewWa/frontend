@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -12,36 +12,36 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import Link from "next/link";
-import { registerUser } from "@/app/register/action/registerUser";
-import { useRouter } from "next/navigation";
-import { toast } from "sonner";
+} from '@/components/ui/card';
+import Link from 'next/link';
+import { registerUser } from '@/app/register/action/registerUser';
+import { useRouter } from 'next/navigation';
+import { toast } from 'sonner';
 
 const formSchema = z
   .object({
     username: z.string().min(1, {
-      message: "Username must be at least 3 characters.",
+      message: 'Username is required.',
     }),
     password: z.string().min(8, {
-      message: "Password must be at least 8 characters",
+      message: 'Password must be at least 8 characters',
     }),
-    confirmPassword: z.string().min(9, { message: "" }),
+    confirmPassword: z.string().min(8, { message: '' }),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
       ctx.addIssue({
-        code: "custom",
-        message: "The passwords did not match",
-        path: ["confirmPassword"],
+        code: 'custom',
+        message: 'The passwords did not match',
+        path: ['confirmPassword'],
       });
     }
   });
@@ -51,18 +51,18 @@ export function RegisterForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      username: "",
-      password: "",
-      confirmPassword: "",
+      username: '',
+      password: '',
+      confirmPassword: '',
     },
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await registerUser(values);
     if (!res) {
-      router.push("/login");
+      router.push('/login');
     } else {
-      toast.error("Error", {
+      toast.error('Error', {
         description: res.message,
       });
     }
@@ -129,7 +129,7 @@ export function RegisterForm() {
           </form>
         </Form>
         <div className="mt-4 text-center text-sm">
-          Already have an account?{" "}
+          Already have an account?{' '}
           <Link href="/login" className="underline underline-offset-4">
             Login
           </Link>

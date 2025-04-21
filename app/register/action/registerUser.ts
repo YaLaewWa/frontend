@@ -1,12 +1,12 @@
-"use server";
+'use server';
 export async function registerUser(values: {
   username: string;
   password: string;
 }) {
   const res = await fetch(`${process.env.BACKEND_URL}/register`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
       username: values.username,
@@ -19,6 +19,6 @@ export async function registerUser(values: {
   } else if (!res.ok) {
     return { message: data.error };
   } else {
-    return { message: "Something is wrong" };
+    return { message: 'Something is wrong' };
   }
 }
