@@ -9,32 +9,99 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus } from 'lucide-react';
-import React from 'react';
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+
+const formSchema = z.object({
+  groupName: z.string().min(1, { message: 'Group name is required' }),
+});
 
 export const CreateGroupDialog = () => {
-  async function onSubmit() {
-    console.log('submit');
+  const [open, setOpen] = useState(false);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      groupName: '',
+    },
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
+    setOpen(false);
+    form.reset();
   }
 
   return (
     <div>
-      <Dialog>
-        <DialogTrigger asChild>
-          <Button>
-            <Plus />
-            Create group
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle className="text-2xl">Create group</DialogTitle>
-          </DialogHeader>
-          <DialogFooter>
-            <Button onClick={onSubmit}>Submit</Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+      <Form {...form}>
+        <Dialog
+          open={open}
+          onOpenChange={(isOpen) => {
+            setOpen(isOpen);
+            if (!isOpen) {
+              form.reset(); // Reset form when dialog is closed
+            }
+          }}
+        >
+          <DialogTrigger asChild>
+            <Button>
+              <Plus />
+              Create group
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              noValidate
+              className="w-full max-w-3xl flex flex-col gap-5"
+            >
+              <DialogHeader className="items">
+                <DialogTitle className="text-2xl text-start">
+                  Create group
+                </DialogTitle>
+                <DialogDescription></DialogDescription>
+                <FormField
+                  control={form.control}
+                  name="groupName"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="font-semibold">
+                        Group name
+                      </FormLabel>
+                      <FormControl>
+                        <Input required {...field} />
+                      </FormControl>
+                      <FormDescription className="text-start">
+                        This is your group name.
+                      </FormDescription>
+                      <FormMessage className="text-start" />
+                    </FormItem>
+                  )}
+                />
+              </DialogHeader>
+              <DialogFooter className="items-end">
+                <Button type="submit" className="w-min">
+                  Submit
+                </Button>
+              </DialogFooter>
+            </form>
+          </DialogContent>
+        </Dialog>
+      </Form>
     </div>
   );
 };
