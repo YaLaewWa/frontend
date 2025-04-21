@@ -1,13 +1,14 @@
-import { CreateGroupWindow } from "@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow";
-import { ChatWindow } from "@/app/chat/components/utilityWindow/chatWindow/chatWindow";
-import { FriendWindow } from "@/app/chat/components/utilityWindow/friendWindow/friendWindow";
-import { GroupWindow } from "@/app/chat/components/utilityWindow/groupWindow/groupWindow";
+import { CreateGroupWindow } from '@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow';
+import { ChatWindow } from '@/app/chat/components/utilityWindow/chatWindow/chatWindow';
+import { FriendWindow } from '@/app/chat/components/utilityWindow/friendWindow/friendWindow';
+import { GroupWindow } from '@/app/chat/components/utilityWindow/groupWindow/groupWindow';
 
 interface UtitlityAreaProps {
+  currentUser: string;
   currentMode: string;
 }
 
-export function UtilityArea({ currentMode }: UtitlityAreaProps) {
+export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   // There are 2 method to choose but the later one is more readable
   // return (
   //     <div>
@@ -23,23 +24,19 @@ export function UtilityArea({ currentMode }: UtitlityAreaProps) {
   //         }
   //     </div>
   // );
-  if (currentMode === "GROUP") {
+  if (currentMode === 'GROUP') {
     return (
       <div>
         <GroupWindow />
       </div>
     );
-  } else if (currentMode === "FRIEND") {
+  } else if (currentMode === 'FRIEND') {
     return (
       <div>
         <FriendWindow />
       </div>
     );
   } else {
-    return (
-      <div>
-        <ChatWindow />
-      </div>
-    );
+    return <ChatWindow currentUser={currentUser} />;
   }
 }
