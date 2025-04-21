@@ -1,3 +1,4 @@
+import { GroupCardInterface } from '@/app/chat/types/Group';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -25,11 +26,13 @@ export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
                 members.length > 0 &&
                 members.map((d) => {
                   return (
-                    <Avatar className="items-center w-[40px] h-[40px] border">
-                      <AvatarFallback>
-                        {d.username.split(' ').map((e) => e.charAt(0))}
-                      </AvatarFallback>
-                    </Avatar>
+                    <div key={d.username}>
+                      <Avatar className="items-center w-[40px] h-[40px] border">
+                        <AvatarFallback>
+                          {d.username.split(' ').map((e) => e.charAt(0))}
+                        </AvatarFallback>
+                      </Avatar>
+                    </div>
                   );
                 })}
             </div>
@@ -48,7 +51,10 @@ export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
                     members.length > 0 &&
                     members.map((d) => {
                       return (
-                        <div className="flex gap-5 items-center">
+                        <div
+                          key={d.username}
+                          className="flex gap-5 items-center"
+                        >
                           <Avatar className="items-center w-[40px] h-[40px] border">
                             <AvatarFallback>
                               {d.username.split(' ').map((e) => e.charAt(0))}

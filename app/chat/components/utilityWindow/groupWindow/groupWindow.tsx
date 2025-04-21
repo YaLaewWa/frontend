@@ -18,7 +18,11 @@ export function GroupWindow() {
       <div className="w-full flex flex-col gap-2">
         {groups && groups.length > 0 ? (
           groups.map((d) => {
-            return <GroupCard groupName={d.groupName} members={d.members} />;
+            return (
+              <div key={d.groupName}>
+                <GroupCard groupName={d.groupName} members={d.members} />
+              </div>
+            );
           })
         ) : (
           <p></p>
