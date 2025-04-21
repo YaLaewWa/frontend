@@ -1,17 +1,16 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 
-interface socketHandlerProp{
-    backendUrl : string
+interface socketHandlerProp {
+  backendUrl: string;
 }
 
-export function SocketHandler({backendUrl} : socketHandlerProp) {
+export function SocketHandler({ backendUrl }: socketHandlerProp) {
   const [messages, setMessages] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState<string>('');
   const socket = new WebSocket(backendUrl);
 
   useEffect(() => {
-
     socket.onmessage = (event) => {
       setMessages((messages) => [...messages, event.data]);
     };
@@ -44,12 +43,17 @@ export function SocketHandler({backendUrl} : socketHandlerProp) {
   };
 
   return (
-    <div className='text-black justify-center items-center flex'>
-      <div >
+    <div className="text-black justify-center items-center flex">
+      <div>
         {messages.map((msg, index) => (
-          <div className='bg-amber-50 border-2 rounded-lg justify-center items-center flex m-2 p-2' key={index}>{msg}</div>
+          <div
+            className="bg-amber-50 border-2 rounded-lg justify-center items-center flex m-2 p-2"
+            key={index}
+          >
+            {msg}
+          </div>
         ))}
-        <div className='flex justify-center items-center'>
+        <div className="flex justify-center items-center">
           <input
             type="text"
             className="border rounded-lg py-2 justify-center items-center flex m-1"
@@ -67,6 +71,5 @@ export function SocketHandler({backendUrl} : socketHandlerProp) {
         </div>
       </div>
     </div>
-    
   );
 }
