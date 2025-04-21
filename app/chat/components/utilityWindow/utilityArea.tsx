@@ -29,12 +29,6 @@ export function UtilityArea({ currentMode }: UtitlityAreaProps) {
         <GroupWindow />
       </div>
     );
-  } else if (currentMode === "CREATE") {
-    return (
-      <div>
-        <CreateGroupWindow />
-      </div>
-    );
   } else if (currentMode === "FRIEND") {
     return (
       <div>

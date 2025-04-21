@@ -34,7 +34,7 @@ const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
 export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
   return (
     <Sidebar>
-      <SidebarHeader className="grid grid-cols-3">
+      <SidebarHeader className="grid grid-cols-2">
         <HeaderButton
           currentMode={currentMode}
           targetMode="FRIEND"
@@ -44,11 +44,6 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           currentMode={currentMode}
           targetMode="GROUP"
           icon={<Search />}
-        />
-        <HeaderButton
-          currentMode={currentMode}
-          targetMode="CREATE"
-          icon={<Plus />}
         />
       </SidebarHeader>
       <SidebarContent>
