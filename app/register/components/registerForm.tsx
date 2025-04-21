@@ -29,12 +29,12 @@ import { toast } from 'sonner';
 const formSchema = z
   .object({
     username: z.string().min(1, {
-      message: 'Username must be at least 3 characters.',
+      message: 'Username is required.',
     }),
     password: z.string().min(8, {
       message: 'Password must be at least 8 characters',
     }),
-    confirmPassword: z.string().min(9, { message: '' }),
+    confirmPassword: z.string().min(8, { message: '' }),
   })
   .superRefine(({ confirmPassword, password }, ctx) => {
     if (confirmPassword !== password) {
