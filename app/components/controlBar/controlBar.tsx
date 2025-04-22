@@ -1,4 +1,4 @@
-import { LogoutButton } from '@/app/chat/components/controlBar/logoutButton';
+import { LogoutButton } from '@/app/components/controlBar/logoutButton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface ControlBarProps {
@@ -7,8 +7,8 @@ interface ControlBarProps {
 
 export function ControlBar({ user }: ControlBarProps) {
   return (
-    <div className="fixed bottom-1 w-[248px] bg-gray-200 py-5 px-2 rounded-xl mx-1 border">
-      <div className="flex">
+    <div className="w-[256px] p-2 fixed bottom-0 left-0 ">
+      <div className="flex bg-gray-300 p-2 rounded-2xl">
         <Avatar className="items-center w-[40px] h-[40px] border">
           <AvatarFallback>
             {user.split(' ').map((e) => e.charAt(0))}

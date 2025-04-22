@@ -21,7 +21,6 @@ import {
 } from '@/components/ui/card';
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 
 const formSchema = z.object({
@@ -30,7 +29,6 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
-  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -40,17 +38,19 @@ export function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await signIn('credentials', {
-      redirect: false,
-      username: values.username,
-      password: values.password,
-    });
+    const res = await signIn(
+      'credentials',
+      {
+        redirect: true,
+        username: values.username,
+        password: values.password,
+      },
+      { callbackUrl: '/' }
+    );
     if (res?.error) {
       toast.error('Error', {
         description: res.error,
       });
-    } else {
-      router.push('/chat');
     }
   }
 

@@ -2,17 +2,18 @@ import { Plus, Search, Users2 } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
 } from '@/components/ui/sidebar';
-import { HeaderButton } from '@/app/chat/components/headerButton';
-import { FriendBar } from '@/app/chat/components/friendBar';
-import { FriendBarInterface } from '@/app/chat/types/UserClass';
-import { unsortedUsersMock } from '@/app/chat/mocks/userSidebarMock';
-import { ControlBar } from '@/app/chat/components/controlBar/controlBar';
+import { HeaderButton } from '@/app/components/headerButton';
+import { FriendBar } from '@/app/components/friendBar';
+import { FriendBarInterface } from '@/app/types/UserClass';
+import { unsortedUsersMock } from '@/app/mocks/userSidebarMock';
+import { ControlBar } from '@/app/components/controlBar/controlBar';
 
 interface MainSidebarProps {
   currentUser: string;
@@ -53,7 +54,7 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           icon={<Plus />}
         />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="mb-16">
         <SidebarGroup>
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -70,7 +71,9 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <ControlBar user={myUser} />
+      <SidebarFooter className="p-0">
+        <ControlBar user={myUser} />
+      </SidebarFooter>
     </Sidebar>
   );
 }

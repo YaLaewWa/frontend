@@ -1,4 +1,4 @@
-import { GroupCardInterface } from '@/app/chat/types/Group';
+import { GroupCardInterface } from '@/app/types/Group';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
