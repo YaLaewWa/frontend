@@ -22,6 +22,7 @@ import {
 import Link from 'next/link';
 import { signIn } from 'next-auth/react';
 import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
   username: z.string().min(1),
@@ -29,6 +30,7 @@ const formSchema = z.object({
 });
 
 export function LoginForm() {
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -38,19 +40,17 @@ export function LoginForm() {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    const res = await signIn(
-      'credentials',
-      {
-        redirect: true,
-        username: values.username,
-        password: values.password,
-      },
-      { callbackUrl: '/' }
-    );
+    const res = await signIn('credentials', {
+      redirect: false,
+      username: values.username,
+      password: values.password,
+    });
     if (res?.error) {
       toast.error('Error', {
         description: res.error,
       });
+    } else {
+      router.push('/');
     }
   }
 

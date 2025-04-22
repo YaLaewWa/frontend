@@ -11,9 +11,8 @@ interface FriendBarProp {
 
 export function FriendBar({ currentUser, barUser, unread }: FriendBarProp) {
   const router = useRouter();
-  const baseUrl = '/chat';
   function changeChat(toUser: string) {
-    router.push(`${baseUrl}?user=${toUser}`);
+    router.push(`/?user=${toUser}`);
   }
   const isSelected = currentUser === barUser;
   return (
