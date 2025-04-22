@@ -28,16 +28,20 @@ export interface GroupInterface {
   joined: boolean;
 }
 
+export interface ConversationInterface{
+  type: string;
+  payload: MessageInterface;
+}
+
 export interface MessageInterface {
-  sender: string;
-  chatID: string;
-  timestamp: Date;
-  content: string;
+  username: string;
+  create_at: Date;
+  message: string;
 }
 
 export interface FriendBarInterface {
   username: string;
   timestamp: Date;
-  unread: number;
+  count: number;
   chat: GroupInterface;
 }
