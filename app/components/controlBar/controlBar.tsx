@@ -1,4 +1,4 @@
-import { LogoutButton } from '@/app/chat/components/controlBar/logoutButton';
+import { LogoutButton } from '@/app/components/controlBar/logoutButton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 interface ControlBarProps {

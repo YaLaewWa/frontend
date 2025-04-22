@@ -14,7 +14,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { SendHorizonal } from 'lucide-react';
 import { Dispatch, SetStateAction } from 'react';
-import { MessageInterface } from '@/app/chat/types/Chat';
+import { MessageInterface } from '@/app/types/Chat';
 
 const formSchema = z.object({
   message: z.string().min(1),

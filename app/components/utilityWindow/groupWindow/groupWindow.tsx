@@ -1,5 +1,5 @@
-import { GroupCard } from '@/app/chat/components/utilityWindow/groupWindow/groupCard';
-import { groupMock } from '@/app/chat/mocks/groupMock';
+import { GroupCard } from '@/app/components/utilityWindow/groupWindow/groupCard';
+import { groupMock } from '@/app/mocks/groupMock';
 import { Button } from '@/components/ui/button';
 import { Divider } from '@/components/ui/divider';
 import Link from 'next/link';

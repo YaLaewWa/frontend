@@ -8,11 +8,11 @@ import {
   SidebarHeader,
   SidebarMenu,
 } from '@/components/ui/sidebar';
-import { HeaderButton } from '@/app/chat/components/headerButton';
-import { FriendBar } from '@/app/chat/components/friendBar';
-import { FriendBarInterface } from '@/app/chat/types/UserClass';
-import { unsortedUsersMock } from '@/app/chat/mocks/userSidebarMock';
-import { ControlBar } from '@/app/chat/components/controlBar/controlBar';
+import { HeaderButton } from '@/app/components/headerButton';
+import { FriendBar } from '@/app/components/friendBar';
+import { FriendBarInterface } from '@/app/types/UserClass';
+import { unsortedUsersMock } from '@/app/mocks/userSidebarMock';
+import { ControlBar } from '@/app/components/controlBar/controlBar';
 
 interface MainSidebarProps {
   currentUser: string;
