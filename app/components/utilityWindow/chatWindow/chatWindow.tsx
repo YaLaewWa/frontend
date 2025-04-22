@@ -1,8 +1,8 @@
 'use client';
-import { MessageBox } from '@/app/chat/components/utilityWindow/chatWindow/messageBox';
-import { SendMessageField } from '@/app/chat/components/utilityWindow/chatWindow/sendMessageField';
-import { chatMock } from '@/app/chat/mocks/chatMock';
-import { MessageInterface } from '@/app/chat/types/Chat';
+import { MessageBox } from '@/app/components/utilityWindow/chatWindow/messageBox';
+import { SendMessageField } from '@/app/components/utilityWindow/chatWindow/sendMessageField';
+import { chatMock } from '@/app/mocks/chatMock';
+import { MessageInterface } from '@/app/types/Chat';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useState } from 'react';
 
