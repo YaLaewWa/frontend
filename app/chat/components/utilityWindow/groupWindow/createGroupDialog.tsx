@@ -43,11 +43,7 @@ export const CreateGroupDialog = () => {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     const res = await createGroup(values.groupName);
-    if (res?.error) {
-      toast.error('Error', {
-        description: res.error,
-      });
-    } else {
+    if (!res) {
       toast(
         <div className="flex gap-3 items-center">
           <CircleCheckBig className="text-green-500" />
@@ -56,6 +52,10 @@ export const CreateGroupDialog = () => {
       );
       setOpen(false);
       form.reset();
+    } else {
+      toast.error('Error', {
+        description: res.message,
+      });
     }
   }
 
