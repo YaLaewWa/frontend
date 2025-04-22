@@ -1,4 +1,4 @@
-import { Plus, Search, Users2 } from 'lucide-react';
+import { Contact, Users } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
@@ -36,21 +36,18 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
   const myUser = 'Friend0';
   return (
     <Sidebar>
-      <SidebarHeader className="grid grid-cols-3">
+      <SidebarHeader className="flex flex-row items-stretch gap-0 p-0">
         <HeaderButton
           currentMode={currentMode}
           targetMode="FRIEND"
-          icon={<Users2 />}
+          icon={<Contact />}
+          text="Friends"
         />
         <HeaderButton
           currentMode={currentMode}
           targetMode="GROUP"
-          icon={<Search />}
-        />
-        <HeaderButton
-          currentMode={currentMode}
-          targetMode="CREATE"
-          icon={<Plus />}
+          icon={<Users />}
+          text="Groups"
         />
       </SidebarHeader>
       <SidebarContent>
