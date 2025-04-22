@@ -109,6 +109,9 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   useEffect(() => {
     setOldChat();
+    if (activeChat){
+      sendRead(activeChat)
+    }
   }, [activeChat]);
 
   const sendMessage = (chatID: string, content: string) => {
@@ -127,10 +130,19 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     sendJsonMessage({
       type: 'ignored',
       payload: {
-        chatID: chatID,
+        chat_id: chatID,
       },
     });
   };
+
+  const sendRead = (chatID: string) => {
+    sendJsonMessage({
+      type: 'read_chat',
+      payload:{
+        chat_id: chatID
+      }
+    })
+  }
 
   //Handler when receiving message from server
   useEffect(() => {
