@@ -1,8 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 interface HeaderButtonProps {
   currentMode: string;
@@ -17,7 +15,6 @@ export function HeaderButton({
   icon,
   text,
 }: HeaderButtonProps) {
-  const router = useRouter();
   return (
     <div className="h-full w-full">
       {currentMode === targetMode ? (
