@@ -7,8 +7,8 @@ export function updateConversation(
   activeChat: User,
   sendNotRead: (chatID: string) => void
 ) {
-  if (payload.username != activeChat?.username){
-    sendNotRead(payload.chatID)
+  if (payload.username != activeChat?.username) {
+    sendNotRead(payload.chatID);
   }
   setConversation([...conversation, payload]);
 }

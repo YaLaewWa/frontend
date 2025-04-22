@@ -1,10 +1,5 @@
 'use client';
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import useWebSocket, { type ReadyState } from 'react-use-websocket';
 import { useSession } from 'next-auth/react';
 import {
@@ -15,7 +10,11 @@ import {
 } from '@/types/ServerMessageType';
 import { FriendBarInterface } from '@/app/types/UserClass';
 import { updateConversation } from '@/contexts/contextHandler/conversationHandler';
-import { initOnlineUser, addOnlineUser, removeOnlineUser } from '@/contexts/contextHandler/onlineUserHandler';
+import {
+  initOnlineUser,
+  addOnlineUser,
+  removeOnlineUser,
+} from '@/contexts/contextHandler/onlineUserHandler';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -85,30 +84,36 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const sendMessage = (chatID: string, content: string) => {
     sendJsonMessage({
-      type: "message",
+      type: 'message',
       payload: {
         chatID: chatID,
         content: content,
-      }
+      },
     });
   };
 
   const sendNotRead = (chatID: string) => {
     sendJsonMessage({
-      type: "ignored",
-      payload:{
+      type: 'ignored',
+      payload: {
         chatID: chatID,
-      }
-    })
-  }
+      },
+    });
+  };
 
   //Handler when receiving message from server
   useEffect(() => {
     const message = lastJsonMessage as WebSocketMessage;
     if (message) {
       switch (message.type) {
-        case 'message' :
-          updateConversation(conversation, setConversation, message.payload, activeChat ?? {username: ""}, sendNotRead);
+        case 'message':
+          updateConversation(
+            conversation,
+            setConversation,
+            message.payload,
+            activeChat ?? { username: '' },
+            sendNotRead
+          );
           break;
         case 'online_users':
           initOnlineUser(setOnlineUsers, message.payload);
@@ -123,24 +128,11 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     }
   }, [lastJsonMessage]);
 
-  //Memorize function no need to calculate function if element in dependency list did not change
-  // const sendMessage = useCallback(
-  //   (chatID: string, content: string) => {
-  //     sendJsonMessage({
-  //       chatID: chatID,
-  //       content: content
-  //     });
-  //   },
-  //   [sendJsonMessage, currentUser]
-  // );
-
-  
-
   return (
     <WebsocketContext.Provider
       value={{
         sendMessage,
-        connectionStatus:readyState,
+        connectionStatus: readyState,
         groups,
         setGroups,
         sidebars,
@@ -150,7 +142,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
         activeChat,
         setActiveChat,
         conversation,
-        setConversation
+        setConversation,
       }}
     >
       {children}
