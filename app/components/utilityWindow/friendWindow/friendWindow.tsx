@@ -21,13 +21,9 @@ export function FriendWindow() {
           isYourself={true}
         />
         {friends && friends.length > 0 ? (
-          friends.filter(d => d !== session?.user?.username).map((d) => (
-            <FriendCard
-              key={d}
-              username={d}
-              isYourself={false}
-            />
-          ))
+          friends
+            .filter((d) => d !== session?.user?.username)
+            .map((d) => <FriendCard key={d} username={d} isYourself={false} />)
         ) : (
           <p>No users found</p>
         )}
