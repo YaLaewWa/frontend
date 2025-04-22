@@ -1,4 +1,6 @@
 'use client';
+import { checkDM } from '@/app/actions/checkDM';
+import { createDM } from '@/app/actions/createDM';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useRouter } from 'next/navigation';
@@ -23,8 +25,14 @@ export const FriendCard = ({
 
       {!isYourself && (
         <Button
-          onClick={() => {
-            router.push(`/?user=${username}`);
+          onClick={async () => {
+            const res = await checkDM(username);
+            if (res.status) {
+              router.push(`/?id=${res.id}`);
+            } else {
+              const response = await createDM(username);
+              router.push(`/?id=${response.id}`);
+            }
           }}
         >
           Chat
