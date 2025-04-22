@@ -4,6 +4,7 @@ import './globals.css';
 import SessionProvider from '@/components/auth/sessionProvider';
 import { getServerSession } from 'next-auth';
 import { Toaster } from '@/components/ui/sonner';
+import { WebsocketProvider } from '@/contexts/WebsocketContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -31,7 +32,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SessionProvider session={session}>{children}</SessionProvider>
+        <SessionProvider session={session}>
+          <WebsocketProvider>{children}</WebsocketProvider>
+        </SessionProvider>
+
         <Toaster richColors />
       </body>
     </html>
