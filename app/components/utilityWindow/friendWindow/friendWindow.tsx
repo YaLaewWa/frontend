@@ -23,7 +23,7 @@ export function FriendWindow() {
         {friends && friends.length > 0 ? (
           friends.filter(d => d !== session?.user?.username).map((d) => (
             <FriendCard
-              key={d} // Add this unique key
+              key={d}
               username={d}
               isYourself={false}
             />
