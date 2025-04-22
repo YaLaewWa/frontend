@@ -13,21 +13,14 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SendHorizonal } from 'lucide-react';
-import { Dispatch, SetStateAction } from 'react';
-import { MessageInterface } from '@/app/types/Chat';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
 
 const formSchema = z.object({
   message: z.string().min(1),
 });
 
-interface SendMessageFieldProps {
-  updateFunction: Dispatch<SetStateAction<MessageInterface[]>>;
-  messageArray: MessageInterface[];
-}
-export function SendMessageField({
-  updateFunction,
-  messageArray,
-}: SendMessageFieldProps) {
+export function SendMessageField() {
+  const { sendMessage, activeChat } = useWebSocketContext();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -36,14 +29,7 @@ export function SendMessageField({
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    updateFunction([
-      ...messageArray,
-      {
-        sender: 'Friend0',
-        timestamp: new Date(),
-        message: values.message,
-      },
-    ]);
+    sendMessage(activeChat ?? '', values.message);
     form.reset({ message: '' });
   }
   return (

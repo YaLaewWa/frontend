@@ -11,7 +11,7 @@ export function MessageBox({
   message,
 }: MessageBoxProp) {
   const userIsSender = sender === myUser;
-  // if (sender === currentChat) {
+  const ts = new Date(timestamp);
   return (
     <div className={`flex my-1 ${userIsSender ? 'justify-end' : ''}`}>
       <div className={`max-w-[300px] ${userIsSender ? 'mr-2' : 'ml-3'}`}>
@@ -39,8 +39,8 @@ export function MessageBox({
               userIsSender ? 'pr-2' : 'pl-3'
             }`}
           >
-            {timestamp.toLocaleTimeString().slice(0, -6) +
-              timestamp.toLocaleTimeString().slice(-3)}
+            {ts.toLocaleTimeString().slice(0, -6) +
+              ts.toLocaleTimeString().slice(-3)}
           </p>
         </div>
       </div>
