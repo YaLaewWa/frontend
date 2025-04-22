@@ -32,8 +32,8 @@ interface WebsocketContextType {
   setGroups: React.Dispatch<React.SetStateAction<GroupInterface[]>>;
   sidebars: FriendBarInterface[];
   setSidebars: React.Dispatch<React.SetStateAction<FriendBarInterface[]>>;
-  onlineUsers: User[];
-  setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  onlineUsers: string[];
+  setOnlineUsers: React.Dispatch<React.SetStateAction<string[]>>;
   conversation: ConversationInterface[];
   setConversation: React.Dispatch<
     React.SetStateAction<ConversationInterface[]>
@@ -63,7 +63,7 @@ export const useWebSocketContext = () => {
 export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [groups, setGroups] = useState<GroupInterface[]>([]);
   const [sidebars, setSidebars] = useState<FriendBarInterface[]>([]);
-  const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
+  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const [conversation, setConversation] = useState<ConversationInterface[]>([]);
   const [activeChat, setActiveChat] = useState<string>();
 
@@ -110,11 +110,13 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const sendMessage = (chatID: string, content: string) => {
     // setActiveChat("b7a882b9-8b71-451e-8aa4-67516cb90b09")
+    console.log(chatID)
+    console.log(content)
     sendJsonMessage({
       type: 'message',
       payload: {
-        chatID: chatID,
-        content: content,
+          chat_id: chatID,
+          content: content,
       },
     });
   };
