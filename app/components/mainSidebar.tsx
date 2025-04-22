@@ -2,6 +2,7 @@ import { Contact, Users } from 'lucide-react';
 import {
   Sidebar,
   SidebarContent,
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -50,7 +51,7 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           text="Groups"
         />
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="mb-16">
         <SidebarGroup>
           <SidebarGroupLabel>Chat lists</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -67,7 +68,9 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <ControlBar user={myUser} />
+      <SidebarFooter className="p-0">
+        <ControlBar user={myUser} />
+      </SidebarFooter>
     </Sidebar>
   );
 }
