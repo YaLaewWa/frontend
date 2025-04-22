@@ -2,7 +2,7 @@
 
 import { auth } from '@/lib/auth';
 
-export const fetchGroup = async (groupName: string) => {
+export const fetchGroup = async () => {
   const session = await auth();
   const res = await fetch(
     `${process.env.BACKEND_URL}/chats/group?limit=-1&page=0`,
