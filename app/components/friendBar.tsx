@@ -16,8 +16,8 @@ export function FriendBar({
   chat_id: string;
 }) {
   const router = useRouter();
+  const { setActiveChat } = useWebSocketContext();
   function changeChat(toUser: string) {
-    const { setActiveChat } = useWebSocketContext();
     setActiveChat(chat_id);
     router.push(`/?user=${toUser}`);
   }
