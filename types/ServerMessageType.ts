@@ -38,6 +38,6 @@ export interface MessageInterface {
 export interface FriendBarInterface {
   username: string;
   timestamp: Date;
-  unread: number;
+  count: number;
   chat: GroupInterface;
 }

@@ -16,6 +16,10 @@ import {
   removeOnlineUser,
 } from '@/contexts/contextHandler/onlineUserHandler';
 import { fetchGroup } from '@/contexts/action/fetchGroup';
+import {
+  addNewGroup,
+  newJoinGroup,
+} from '@/contexts/contextHandler/newGroupHandler';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -131,8 +135,15 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
         case 'user_logout':
           removeOnlineUser(onlineUsers, setOnlineUsers, message.payload);
           break;
+        case 'new_group':
+          addNewGroup(groups, setGroups, message.payload);
+          break;
+        case 'new_user_group':
+          newJoinGroup(groups, setGroups, message.payload);
+          break;
       }
     }
+    console.log(lastJsonMessage);
   }, [lastJsonMessage]);
   return (
     <WebsocketContext.Provider
