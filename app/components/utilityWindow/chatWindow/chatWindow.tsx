@@ -1,7 +1,6 @@
 'use client';
 import { MessageBox } from '@/app/components/utilityWindow/chatWindow/messageBox';
 import { SendMessageField } from '@/app/components/utilityWindow/chatWindow/sendMessageField';
-import { chatMock } from '@/app/mocks/chatMock';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useWebSocketContext } from '@/contexts/WebsocketContext';
 import { useSession } from 'next-auth/react';
@@ -11,7 +10,7 @@ interface ChatWindowProps {
 }
 
 export function ChatWindow({ currentUser }: ChatWindowProps) {
-  const {data:session} = useSession();
+  const { data: session } = useSession();
   const { conversation } = useWebSocketContext();
   const displayChats = conversation.sort((n1, n2) => {
     if (n1.payload.create_at > n2.payload.create_at) {
@@ -35,8 +34,10 @@ export function ChatWindow({ currentUser }: ChatWindowProps) {
           <div className="">
             {displayChats.map((message) => (
               <MessageBox
-                key={(session?.user?.username ?? "") + message.payload.create_at}
-                myUser={session?.user?.username ?? ""}
+                key={
+                  (session?.user?.username ?? '') + message.payload.create_at
+                }
+                myUser={session?.user?.username ?? ''}
                 sender={message.payload.username}
                 timestamp={message.payload.create_at}
                 message={message.payload.message}
@@ -44,7 +45,7 @@ export function ChatWindow({ currentUser }: ChatWindowProps) {
             ))}
           </div>
         </ScrollArea>
-        <SendMessageField/>
+        <SendMessageField />
       </div>
     );
   }

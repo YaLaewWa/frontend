@@ -20,7 +20,7 @@ const formSchema = z.object({
 });
 
 export function SendMessageField() {
-  const { sendMessage, activeChat } = useWebSocketContext()
+  const { sendMessage, activeChat } = useWebSocketContext();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -29,7 +29,7 @@ export function SendMessageField() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    sendMessage(activeChat ?? "" , values.message)
+    sendMessage(activeChat ?? '', values.message);
     form.reset({ message: '' });
   }
   return (
