@@ -6,7 +6,6 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@/components/ui/dialog';
-import { GroupInterface } from '@/types/ServerMessageType';
 import {
   DialogDescription,
   DialogTitle,
