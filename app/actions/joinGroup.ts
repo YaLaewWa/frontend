@@ -1,6 +1,7 @@
 'use server';
 
 import { auth } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
 
 export const joinGroup = async (groupID: string) => {
   const session = await auth();
@@ -13,6 +14,7 @@ export const joinGroup = async (groupID: string) => {
   });
   const data = await res.json();
   if (res.ok && data) {
+    revalidatePath('/?mode=GROUP');
     return;
   } else if (!res.ok) {
     return { message: data.error };

@@ -20,7 +20,7 @@ export function removeOnlineUser(
   setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>,
   payload: any
 ) {
-  const index = onlineUsers.findIndex(payload);
+  const index = onlineUsers.indexOf(payload);
   setOnlineUsers([
     ...onlineUsers.slice(0, index),
     ...onlineUsers.slice(index + 1, onlineUsers.length),

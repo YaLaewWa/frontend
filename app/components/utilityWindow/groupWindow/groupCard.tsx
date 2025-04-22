@@ -1,6 +1,5 @@
 'use client';
 import { joinGroup } from '@/app/actions/joinGroup';
-import { GroupCardInterface } from '@/app/types/Group';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,6 +8,7 @@ import {
   DialogFooter,
   DialogHeader,
 } from '@/components/ui/dialog';
+import { GroupInterface } from '@/types/ServerMessageType';
 import {
   DialogDescription,
   DialogTitle,
@@ -17,7 +17,7 @@ import {
 import { CircleCheckBig } from 'lucide-react';
 import { toast } from 'sonner';
 
-export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
+export const GroupCard = ({ name, members, id, joined }: GroupInterface) => {
   async function joinGroupClick() {
     const res = await joinGroup(id);
     if (!res) {
@@ -46,9 +46,7 @@ export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
                   return (
                     <div key={d.username}>
                       <Avatar className="items-center w-[40px] h-[40px] border">
-                        <AvatarFallback>
-                          {d.username.split(' ').map((e) => e.charAt(0))}
-                        </AvatarFallback>
+                        <AvatarFallback>{d.username.charAt(0)}</AvatarFallback>
                       </Avatar>
                     </div>
                   );
@@ -89,9 +87,20 @@ export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      <Button className="mr-5 p-5" onClick={joinGroupClick}>
-        Join
-      </Button>
+      {joined ? (
+        <Button
+          disabled={true}
+          variant={'outline'}
+          className="mr-5 p-5"
+          onClick={joinGroupClick}
+        >
+          Joined
+        </Button>
+      ) : (
+        <Button className="mr-5 p-5" onClick={joinGroupClick}>
+          Join
+        </Button>
+      )}
     </div>
   );
 };

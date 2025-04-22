@@ -1,6 +1,7 @@
 'use server';
 
 import { auth } from '@/lib/auth';
+import { revalidatePath } from 'next/cache';
 
 export const createGroup = async (groupName: string) => {
   const session = await auth();
@@ -17,6 +18,7 @@ export const createGroup = async (groupName: string) => {
   });
   const data = await res.json();
   if (res.ok && data) {
+    revalidatePath('/?mode=GROUP');
     return;
   } else if (!res.ok) {
     return { message: data.error };
