@@ -8,7 +8,7 @@ import {
   User,
   WebSocketMessage,
 } from '@/types/ServerMessageType';
-import { FriendBarInterface } from '@/app/types/UserClass';
+import { FriendBarInterface } from '@/types/ServerMessageType';
 import { updateConversation } from '@/contexts/contextHandler/conversationHandler';
 import {
   initOnlineUser,

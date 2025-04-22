@@ -24,6 +24,8 @@ export interface GroupInterface {
   groupName: string;
   chatID: string;
   members: User[];
+  isGroup: boolean;
+  joined: boolean;
 }
 
 export interface MessageInterface {
@@ -31,4 +33,11 @@ export interface MessageInterface {
   chatID: string;
   timestamp: Date;
   content: string;
+}
+
+export interface FriendBarInterface {
+  username: string;
+  timestamp: Date;
+  unread: number;
+  chat: GroupInterface;
 }
