@@ -3,6 +3,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import useWebSocket, { type ReadyState } from 'react-use-websocket';
 import { useSession } from 'next-auth/react';
 import {
+  ConversationInterface,
   GroupInterface,
   MessageInterface,
   User,
@@ -15,6 +16,7 @@ import {
   addOnlineUser,
   removeOnlineUser,
 } from '@/contexts/contextHandler/onlineUserHandler';
+import { getChat } from '@/contexts/action/getChat';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -25,10 +27,10 @@ interface WebsocketContextType {
   setSidebars: React.Dispatch<React.SetStateAction<FriendBarInterface[]>>;
   onlineUsers: User[];
   setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>;
-  conversation: MessageInterface[];
-  setConversation: React.Dispatch<React.SetStateAction<MessageInterface[]>>;
-  activeChat?: User;
-  setActiveChat: React.Dispatch<React.SetStateAction<User | undefined>>;
+  conversation: ConversationInterface[];
+  setConversation: React.Dispatch<React.SetStateAction<ConversationInterface[]>>;
+  activeChat?: string;
+  setActiveChat: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 interface WebsocketProviderProps {
@@ -53,8 +55,8 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [groups, setGroups] = useState<GroupInterface[]>([]);
   const [sidebars, setSidebars] = useState<FriendBarInterface[]>([]);
   const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
-  const [conversation, setConversation] = useState<MessageInterface[]>([]);
-  const [activeChat, setActiveChat] = useState<User>();
+  const [conversation, setConversation] = useState<ConversationInterface[]>([]);
+  const [activeChat, setActiveChat] = useState<string>();
 
   const { data: session, status } = useSession();
   //Websocket connection
@@ -66,7 +68,6 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
       onOpen: async () => {
         console.log('connection established try to making authentication');
         if (!session) return;
-        console.log(lastJsonMessage);
       },
       onClose: () => console.log('WebSocket connection closed'),
       onError: (event) => console.error('WebSocket error:', event),
@@ -82,7 +83,18 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     // setSidebar(await getSidebar)
   }, []);
 
+  async function setOldChat(){
+
+    const res = activeChat ? await getChat(activeChat) : [];
+    setConversation(res.data ?? []);
+  }
+
+  useEffect(()=>{
+    setOldChat()
+  }, [activeChat])
+
   const sendMessage = (chatID: string, content: string) => {
+    // setActiveChat("b7a882b9-8b71-451e-8aa4-67516cb90b09")
     sendJsonMessage({
       type: 'message',
       payload: {
@@ -101,6 +113,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     });
   };
 
+
   //Handler when receiving message from server
   useEffect(() => {
     const message = lastJsonMessage as WebSocketMessage;
@@ -110,8 +123,8 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
           updateConversation(
             conversation,
             setConversation,
-            message.payload,
-            activeChat ?? { username: '' },
+            message,
+            activeChat ?? "",
             sendNotRead
           );
           break;
@@ -126,6 +139,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
           break;
       }
     }
+    console.log(message)
   }, [lastJsonMessage]);
   return (
     <WebsocketContext.Provider

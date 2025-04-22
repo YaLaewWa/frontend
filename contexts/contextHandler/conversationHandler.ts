@@ -1,15 +1,16 @@
-import { MessageInterface, User } from '@/types/ServerMessageType';
+import { ConversationInterface, MessageInterface, User, WebSocketMessage } from '@/types/ServerMessageType';
 
 export function updateConversation(
-  conversation: MessageInterface[],
-  setConversation: React.Dispatch<React.SetStateAction<MessageInterface[]>>,
-  payload: any,
-  activeChat: User,
+  conversation: ConversationInterface[],
+  setConversation: React.Dispatch<React.SetStateAction<ConversationInterface[]>>,
+  message: WebSocketMessage,
+  activeChat: string,
   sendNotRead: (chatID: string) => void
 ) {
-  if (payload.username != activeChat?.username) {
-    sendNotRead(payload.chatID);
+  console.log(message)
+  if (message.payload.chat_id != (activeChat ?? "")) {
+    sendNotRead(message.payload.chat_id);
   } else {
-    setConversation([...conversation, payload]);
+    setConversation([...conversation, {type:message.type, payload:{create_at:message.payload.create_at, username:message.payload.username, message:message.payload.message}}]);
   }
 }
