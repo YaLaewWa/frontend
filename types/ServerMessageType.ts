@@ -34,3 +34,10 @@ export interface MessageInterface {
   timestamp: Date;
   content: string;
 }
+
+export interface FriendBarInterface {
+  username: string;
+  timestamp: Date;
+  unread: number;
+  chat: GroupInterface;
+}
