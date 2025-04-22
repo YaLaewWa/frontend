@@ -1,3 +1,4 @@
+import { joinGroup } from '@/app/actions/joinGroup';
 import { GroupCardInterface } from '@/app/types/Group';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -12,9 +13,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@radix-ui/react-dialog';
-import React from 'react';
+import { CircleCheckBig } from 'lucide-react';
+import { toast } from 'sonner';
 
-export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
+export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
+  async function joinGroupClick() {
+    const res = await joinGroup(id);
+    if (!res) {
+      toast(
+        <div className="flex gap-3 items-center">
+          <CircleCheckBig className="text-green-500" />
+          <p className="text-base">Joined group</p>
+        </div>
+      );
+    } else {
+      toast.error('Error', {
+        description: res.message,
+      });
+    }
+  }
   return (
     <div className="flex border-2 hover:border-gray-700 rounded-xl p-3 items-center">
       <Dialog>
@@ -69,12 +86,13 @@ export const GroupCard = ({ groupName, members }: GroupCardInterface) => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button>Join</Button>
+            <Button onClick={joinGroupClick}>Join</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-
-      <Button className="mr-5 p-5">Join</Button>
+      <Button className="mr-5 p-5" onClick={joinGroupClick}>
+        Join
+      </Button>
     </div>
   );
 };
