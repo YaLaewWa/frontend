@@ -18,10 +18,12 @@ import {
 } from '@/contexts/contextHandler/onlineUserHandler';
 import { getChat } from '@/contexts/action/getChat';
 import { fetchGroup } from '@/contexts/action/fetchGroup';
+import { fetchSidebar } from '@/contexts/action/fetchSidebar';
 import {
   addNewGroup,
   newJoinGroup,
 } from '@/contexts/contextHandler/newGroupHandler';
+import { addNewSidebar } from '@/contexts/contextHandler/sidebarHandler';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -33,7 +35,9 @@ interface WebsocketContextType {
   onlineUsers: User[];
   setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>;
   conversation: ConversationInterface[];
-  setConversation: React.Dispatch<React.SetStateAction<ConversationInterface[]>>;
+  setConversation: React.Dispatch<
+    React.SetStateAction<ConversationInterface[]>
+  >;
   activeChat?: string;
   setActiveChat: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
@@ -85,24 +89,24 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
   async function fetchAll() {
     const res = await fetchGroup();
     setGroups(res.data);
-    console.log(res);
+    const sidebar = await fetchSidebar();
+    setSidebars(sidebar.data);
+    console.log(sidebar);
   }
 
   //Fetch everything
   useEffect(() => {
     fetchAll();
-    // setSidebar(await getSidebar)
   }, []);
 
-  async function setOldChat(){
-
+  async function setOldChat() {
     const res = activeChat ? await getChat(activeChat) : [];
     setConversation(res.data ?? []);
   }
 
-  useEffect(()=>{
-    setOldChat()
-  }, [activeChat])
+  useEffect(() => {
+    setOldChat();
+  }, [activeChat]);
 
   const sendMessage = (chatID: string, content: string) => {
     // setActiveChat("b7a882b9-8b71-451e-8aa4-67516cb90b09")
@@ -124,7 +128,6 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     });
   };
 
-
   //Handler when receiving message from server
   useEffect(() => {
     const message = lastJsonMessage as WebSocketMessage;
@@ -135,7 +138,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
             conversation,
             setConversation,
             message,
-            activeChat ?? "",
+            activeChat ?? '',
             sendNotRead
           );
           break;
@@ -154,6 +157,8 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
         case 'new_user_group':
           newJoinGroup(groups, setGroups, message.payload);
           break;
+        case 'sidebar_update':
+          addNewSidebar(setSidebars, message.payload);
       }
     }
     console.log(lastJsonMessage);

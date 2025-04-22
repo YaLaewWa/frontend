@@ -1,3 +1,4 @@
+'use client';
 import { Contact, Users } from 'lucide-react';
 import {
   Sidebar,
@@ -11,31 +12,26 @@ import {
 } from '@/components/ui/sidebar';
 import { HeaderButton } from '@/app/components/headerButton';
 import { FriendBar } from '@/app/components/friendBar';
-import { unsortedUsersMock } from '@/app/mocks/userSidebarMock';
 import { ControlBar } from '@/app/components/controlBar/controlBar';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
 
 interface MainSidebarProps {
-  currentUser: string;
+  currentChat: string;
   currentMode: string;
 }
 
-// Fetch chat order and friend
-const unsortedUsers = unsortedUsersMock;
+export function MainSidebar({ currentChat, currentMode }: MainSidebarProps) {
+  const { sidebars } = useWebSocketContext();
 
-const sortedUsers = unsortedUsers.sort((n1, n2) => {
-  if (n1.timestamp < n2.timestamp) {
-    return 1;
-  } else if (n1.timestamp > n2.timestamp) {
-    return -1;
-  }
+  const sortedUsers = sidebars.sort((n1, n2) => {
+    if (n1.timestamp < n2.timestamp) {
+      return 1;
+    } else if (n1.timestamp > n2.timestamp) {
+      return -1;
+    }
 
-  return 0;
-});
-
-export async function MainSidebar({
-  currentUser,
-  currentMode,
-}: MainSidebarProps) {
+    return 0;
+  });
   return (
     <Sidebar>
       <SidebarHeader className="flex flex-row items-stretch gap-0 p-0">
@@ -59,10 +55,11 @@ export async function MainSidebar({
             <SidebarMenu>
               {sortedUsers.map((user) => (
                 <FriendBar
-                  key={user.username}
-                  currentUser={currentUser}
-                  barUser={user.username}
-                  unread={user.unread}
+                  key={user.chat.id}
+                  currentChat={currentChat}
+                  chatName={user.chat.name}
+                  unread={user.count}
+                  chat_id={user.chat.id}
                 />
               ))}
             </SidebarMenu>
