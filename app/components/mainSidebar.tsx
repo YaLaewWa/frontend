@@ -59,6 +59,7 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
                   currentUser={currentUser}
                   username={user.username}
                   unread={user.count}
+                  chat_id={user.chat.id}
                 />
               ))}
             </SidebarMenu>

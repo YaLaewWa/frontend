@@ -1,19 +1,24 @@
 'use client';
 
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
 import { useRouter } from 'next/navigation';
 
 export function FriendBar({
   currentUser,
   username,
   unread,
+  chat_id,
 }: {
   currentUser: string;
   username: string;
   unread: number;
+  chat_id: string;
 }) {
   const router = useRouter();
   function changeChat(toUser: string) {
+    const { setActiveChat } = useWebSocketContext();
+    setActiveChat(chat_id);
     router.push(`/?user=${toUser}`);
   }
   const isSelected = currentUser === username;

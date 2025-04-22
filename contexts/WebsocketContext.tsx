@@ -29,8 +29,8 @@ interface WebsocketContextType {
   setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>;
   conversation: MessageInterface[];
   setConversation: React.Dispatch<React.SetStateAction<MessageInterface[]>>;
-  activeChat?: User;
-  setActiveChat: React.Dispatch<React.SetStateAction<User | undefined>>;
+  activeChat?: string;
+  setActiveChat: React.Dispatch<React.SetStateAction<string | undefined>>;
 }
 
 interface WebsocketProviderProps {
@@ -56,7 +56,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [sidebars, setSidebars] = useState<FriendBarInterface[]>([]);
   const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
   const [conversation, setConversation] = useState<MessageInterface[]>([]);
-  const [activeChat, setActiveChat] = useState<User>();
+  const [activeChat, setActiveChat] = useState<string>();
 
   const { data: session, status } = useSession();
   //Websocket connection
@@ -120,7 +120,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
             conversation,
             setConversation,
             message.payload,
-            activeChat ?? { username: '' },
+            activeChat ?? '',
             sendNotRead
           );
           break;

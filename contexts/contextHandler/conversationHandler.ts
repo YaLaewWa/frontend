@@ -4,11 +4,11 @@ export function updateConversation(
   conversation: MessageInterface[],
   setConversation: React.Dispatch<React.SetStateAction<MessageInterface[]>>,
   payload: any,
-  activeChat: User,
+  activeChat: string,
   sendNotRead: (chatID: string) => void
 ) {
-  if (payload.username != activeChat?.username) {
-    sendNotRead(payload.chatID);
+  if (payload.chat_id != activeChat) {
+    sendNotRead(payload.chat_id);
   } else {
     setConversation([...conversation, payload]);
   }
