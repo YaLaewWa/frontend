@@ -9,6 +9,7 @@ export function updateConversation(
 ) {
   if (payload.username != activeChat?.username) {
     sendNotRead(payload.chatID);
+  } else {
+    setConversation([...conversation, payload]);
   }
-  setConversation([...conversation, payload]);
 }
