@@ -11,7 +11,6 @@ import {
 } from '@/components/ui/sidebar';
 import { HeaderButton } from '@/app/components/headerButton';
 import { FriendBar } from '@/app/components/friendBar';
-import { FriendBarInterface } from '@/app/types/UserClass';
 import { unsortedUsersMock } from '@/app/mocks/userSidebarMock';
 import { ControlBar } from '@/app/components/controlBar/controlBar';
 
@@ -21,9 +20,9 @@ interface MainSidebarProps {
 }
 
 // Fetch chat order and friend
-const unsortedUsers: FriendBarInterface[] = unsortedUsersMock;
+const unsortedUsers = unsortedUsersMock;
 
-const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
+const sortedUsers = unsortedUsers.sort((n1, n2) => {
   if (n1.timestamp < n2.timestamp) {
     return 1;
   } else if (n1.timestamp > n2.timestamp) {
