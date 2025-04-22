@@ -11,7 +11,7 @@ export function MessageBox({
   message,
 }: MessageBoxProp) {
   const userIsSender = sender === myUser;
-  // if (sender === currentUser) {
+  // if (sender === currentChat) {
   return (
     <div className={`flex my-1 ${userIsSender ? 'justify-end' : ''}`}>
       <div className={`max-w-[300px] ${userIsSender ? 'mr-2' : 'ml-3'}`}>

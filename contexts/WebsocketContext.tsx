@@ -21,6 +21,7 @@ import {
   addNewGroup,
   newJoinGroup,
 } from '@/contexts/contextHandler/newGroupHandler';
+import { addNewSidebar } from '@/contexts/contextHandler/sidebarHandler';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -143,6 +144,8 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
         case 'new_user_group':
           newJoinGroup(groups, setGroups, message.payload);
           break;
+        case 'sidebar_update':
+          addNewSidebar(setSidebars, message.payload);
       }
     }
     console.log(lastJsonMessage);

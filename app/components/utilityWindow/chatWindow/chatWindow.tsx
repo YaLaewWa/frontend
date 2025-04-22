@@ -7,10 +7,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { useState } from 'react';
 
 interface ChatWindowProps {
-  currentUser: string;
+  currentChat: string;
 }
 
-export function ChatWindow({ currentUser }: ChatWindowProps) {
+export function ChatWindow({ currentChat }: ChatWindowProps) {
   const myUser = 'Friend0';
   const unsortedChats: MessageInterface[] = chatMock.chat; //Fetch old message
   const sortedChats: MessageInterface[] = unsortedChats.sort((n1, n2) => {
@@ -23,7 +23,7 @@ export function ChatWindow({ currentUser }: ChatWindowProps) {
     return 0;
   });
   const [displayChats, setDisplayChats] = useState(sortedChats);
-  if (currentUser === '') {
+  if (currentChat === '') {
     return (
       <div className="flex mx-auto my-auto text-gray-500">
         <p>Click your friend on the left bar to chat</p>

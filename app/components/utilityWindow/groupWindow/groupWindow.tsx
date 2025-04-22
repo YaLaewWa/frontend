@@ -17,7 +17,7 @@ export function GroupWindow() {
         {groups && groups.length > 0 ? (
           groups.map((d) => {
             return (
-              <div key={d.name}>
+              <div key={d.id}>
                 <GroupCard
                   name={d.name}
                   members={d.members}

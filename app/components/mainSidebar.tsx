@@ -16,11 +16,11 @@ import { ControlBar } from '@/app/components/controlBar/controlBar';
 import { useWebSocketContext } from '@/contexts/WebsocketContext';
 
 interface MainSidebarProps {
-  currentUser: string;
+  currentChat: string;
   currentMode: string;
 }
 
-export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
+export function MainSidebar({ currentChat, currentMode }: MainSidebarProps) {
   const { sidebars } = useWebSocketContext();
 
   const sortedUsers = sidebars.sort((n1, n2) => {
@@ -55,9 +55,9 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
             <SidebarMenu>
               {sortedUsers.map((user) => (
                 <FriendBar
-                  key={user.username}
-                  currentUser={currentUser}
-                  username={user.username}
+                  key={user.chat.id}
+                  currentChat={currentChat}
+                  chatName={user.chat.name}
                   unread={user.count}
                   chat_id={user.chat.id}
                 />

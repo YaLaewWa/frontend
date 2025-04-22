@@ -3,11 +3,11 @@ import { FriendWindow } from '@/app/components/utilityWindow/friendWindow/friend
 import { GroupWindow } from '@/app/components/utilityWindow/groupWindow/groupWindow';
 
 interface UtitlityAreaProps {
-  currentUser: string;
+  currentChat: string;
   currentMode: string;
 }
 
-export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
+export function UtilityArea({ currentChat, currentMode }: UtitlityAreaProps) {
   // There are 2 method to choose but the later one is more readable
   // return (
   //     <div>
@@ -38,7 +38,7 @@ export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   } else {
     return (
       <div className="w-full">
-        <ChatWindow currentUser={currentUser} />
+        <ChatWindow currentChat={currentChat} />
       </div>
     );
   }
