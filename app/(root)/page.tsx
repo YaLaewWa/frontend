@@ -1,5 +1,5 @@
-import { MainSidebar } from '@/app/chat/components/mainSidebar';
-import { UtilityArea } from '@/app/chat/components/utilityWindow/utilityArea';
+import { MainSidebar } from '@/app/components/mainSidebar';
+import { UtilityArea } from '@/app/components/utilityWindow/utilityArea';
 import { SidebarProvider } from '@/components/ui/sidebar';
 
 export default async function Page({

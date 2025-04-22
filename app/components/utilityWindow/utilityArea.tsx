@@ -1,7 +1,7 @@
-import { CreateGroupWindow } from '@/app/chat/components/utilityWindow/createGroupWindow/createGroupWindow';
-import { ChatWindow } from '@/app/chat/components/utilityWindow/chatWindow/chatWindow';
-import { FriendWindow } from '@/app/chat/components/utilityWindow/friendWindow/friendWindow';
-import { GroupWindow } from '@/app/chat/components/utilityWindow/groupWindow/groupWindow';
+import { CreateGroupWindow } from '@/app/components/utilityWindow/createGroupWindow/createGroupWindow';
+import { ChatWindow } from '@/app/components/utilityWindow/chatWindow/chatWindow';
+import { FriendWindow } from '@/app/components/utilityWindow/friendWindow/friendWindow';
+import { GroupWindow } from '@/app/components/utilityWindow/groupWindow/groupWindow';
 
 interface UtitlityAreaProps {
   currentUser: string;
