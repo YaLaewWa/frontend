@@ -56,13 +56,13 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [conversation, setConversation] = useState<MessageInterface[]>([]);
   const [activeChat, setActiveChat] = useState<User>();
 
-  const { data: session, status, update } = useSession();
-
+  const { data: session, status } = useSession();
   //Websocket connection
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
-    `${process.env.WEBSOCKET_URL}`,
+    session?.accessToken
+      ? `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}?token=${session.accessToken}`
+      : null,
     {
-      protocols: ['Authorization', `Bearer ${session?.accessToken}`],
       onOpen: async () => {
         console.log('connection established try to making authentication');
         if (!session) return;
@@ -127,7 +127,6 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
       }
     }
   }, [lastJsonMessage]);
-
   return (
     <WebsocketContext.Provider
       value={{
