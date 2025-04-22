@@ -17,7 +17,13 @@ export function GroupWindow() {
           groups.map((d) => {
             return (
               <div key={d.groupName}>
-                <GroupCard groupName={d.groupName} members={d.members} />
+                <GroupCard
+                  groupName={d.groupName}
+                  members={d.members}
+                  id={d.id}
+                  isGroup={d.isGroup}
+                  joined={d.joined}
+                />
               </div>
             );
           })

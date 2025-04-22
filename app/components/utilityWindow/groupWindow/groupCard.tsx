@@ -1,3 +1,4 @@
+'use client';
 import { joinGroup } from '@/app/actions/joinGroup';
 import { GroupCardInterface } from '@/app/types/Group';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';

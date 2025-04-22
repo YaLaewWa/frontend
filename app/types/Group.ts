@@ -4,4 +4,6 @@ export interface GroupCardInterface {
   members: {
     username: string;
   }[];
+  isGroup: boolean;
+  joined: boolean;
 }
