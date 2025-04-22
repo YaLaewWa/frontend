@@ -9,7 +9,7 @@ interface ChatWindowProps {
   currentChat: string;
 }
 
-export function ChatWindow({ currentUser }: ChatWindowProps) {
+export function ChatWindow({ currentChat }: ChatWindowProps) {
   const { data: session } = useSession();
   const { conversation } = useWebSocketContext();
   const displayChats = conversation.sort((n1, n2) => {
@@ -21,7 +21,7 @@ export function ChatWindow({ currentUser }: ChatWindowProps) {
 
     return 0;
   });
-  if (currentUser === '') {
+  if (currentChat === '') {
     return (
       <div className="flex mx-auto my-auto text-gray-500">
         <p>Click your friend on the left bar to chat</p>
