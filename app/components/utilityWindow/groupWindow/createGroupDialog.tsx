@@ -1,5 +1,5 @@
 'use client';
-import { createGroup } from '@/app/chat/actions/createGroup';
+import { createGroup } from '@/app/actions/createGroup';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
