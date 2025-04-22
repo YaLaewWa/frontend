@@ -1,9 +1,10 @@
+'use client';
 import { LogoutButton } from '@/app/components/controlBar/logoutButton';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
-import { auth } from '@/lib/auth';
+import { useSession } from 'next-auth/react';
 
-export async function ControlBar() {
-  const session = await auth();
+export function ControlBar() {
+  const { data: session } = useSession();
   const username = session?.user?.username ?? '';
   return (
     <div className="w-[256px] p-2 fixed bottom-0 left-0 ">

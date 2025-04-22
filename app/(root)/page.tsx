@@ -7,13 +7,13 @@ export default async function Page({
 }: {
   searchParams: Promise<{ [key: string]: string | undefined }>;
 }) {
-  const currentUser = (await searchParams).user ?? '';
+  const currentChat = (await searchParams).id ?? '';
   const currentMode = (await searchParams).mode ?? 'CHAT';
   return (
     <div>
       <SidebarProvider>
-        <MainSidebar currentUser={currentUser} currentMode={currentMode} />
-        <UtilityArea currentUser={currentUser} currentMode={currentMode} />
+        <MainSidebar currentChat={currentChat} currentMode={currentMode} />
+        <UtilityArea currentChat={currentChat} currentMode={currentMode} />
       </SidebarProvider>
     </div>
   );

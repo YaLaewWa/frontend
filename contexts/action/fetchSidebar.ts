@@ -2,9 +2,9 @@
 
 import { auth } from '@/lib/auth';
 
-export const fetchGroup = async () => {
+export const fetchSidebar = async () => {
   const session = await auth();
-  const res = await fetch(`${process.env.BACKEND_URL}/chats/`, {
+  const res = await fetch(`${process.env.BACKEND_URL}/sidebar`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
