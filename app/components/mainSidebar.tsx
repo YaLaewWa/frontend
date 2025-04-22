@@ -33,8 +33,10 @@ const sortedUsers: FriendBarInterface[] = unsortedUsers.sort((n1, n2) => {
   return 0;
 });
 
-export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
-  const myUser = 'Friend0';
+export async function MainSidebar({
+  currentUser,
+  currentMode,
+}: MainSidebarProps) {
   return (
     <Sidebar>
       <SidebarHeader className="flex flex-row items-stretch gap-0 p-0">
@@ -69,7 +71,7 @@ export function MainSidebar({ currentUser, currentMode }: MainSidebarProps) {
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="p-0">
-        <ControlBar user={myUser} />
+        <ControlBar />
       </SidebarFooter>
     </Sidebar>
   );

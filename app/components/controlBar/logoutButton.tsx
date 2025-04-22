@@ -1,3 +1,4 @@
+'use client';
 import { LogOutIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,12 +10,13 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
+import { signOut } from 'next-auth/react';
 
 export function LogoutButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="self-center rounded-full bg-white p-2 border">
+        <div className="self-center rounded-full bg-white p-2 border hover:cursor-pointer">
           <LogOutIcon color={'black'} strokeWidth={'3px'} />
         </div>
       </DialogTrigger>
@@ -26,7 +28,7 @@ export function LogoutButton() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button>Logout</Button>
+          <Button onClick={() => signOut()}>Logout</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
