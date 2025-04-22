@@ -1,26 +1,26 @@
-import { User } from '@/types/ServerMessageType';
+
 
 export function initOnlineUser(
-  setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>,
+  setOnlineUsers: React.Dispatch<React.SetStateAction<string[]>>,
   payload: any
 ) {
   setOnlineUsers(payload);
 }
 
 export function addOnlineUser(
-  onlineUsers: User[],
-  setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>,
+  onlineUsers: string[],
+  setOnlineUsers: React.Dispatch<React.SetStateAction<string[]>>,
   payload: any
 ) {
   setOnlineUsers([...onlineUsers, payload]);
 }
 
 export function removeOnlineUser(
-  onlineUsers: User[],
-  setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>,
+  onlineUsers: string[],
+  setOnlineUsers: React.Dispatch<React.SetStateAction<string[]>>,
   payload: any
 ) {
-  const index = onlineUsers.findIndex(payload);
+  const index = onlineUsers.indexOf(payload);
   setOnlineUsers([
     ...onlineUsers.slice(0, index),
     ...onlineUsers.slice(index + 1, onlineUsers.length),

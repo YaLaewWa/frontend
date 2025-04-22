@@ -24,8 +24,8 @@ interface WebsocketContextType {
   setGroups: React.Dispatch<React.SetStateAction<GroupInterface[]>>;
   sidebars: FriendBarInterface[];
   setSidebars: React.Dispatch<React.SetStateAction<FriendBarInterface[]>>;
-  onlineUsers: User[];
-  setOnlineUsers: React.Dispatch<React.SetStateAction<User[]>>;
+  onlineUsers: string[];
+  setOnlineUsers: React.Dispatch<React.SetStateAction<string[]>>;
   conversation: MessageInterface[];
   setConversation: React.Dispatch<React.SetStateAction<MessageInterface[]>>;
   activeChat?: User;
@@ -53,7 +53,7 @@ export const useWebSocketContext = () => {
 export function WebsocketProvider({ children }: WebsocketProviderProps) {
   const [groups, setGroups] = useState<GroupInterface[]>([]);
   const [sidebars, setSidebars] = useState<FriendBarInterface[]>([]);
-  const [onlineUsers, setOnlineUsers] = useState<User[]>([]);
+  const [onlineUsers, setOnlineUsers] = useState<string[]>([]);
   const [conversation, setConversation] = useState<MessageInterface[]>([]);
   const [activeChat, setActiveChat] = useState<User>();
 

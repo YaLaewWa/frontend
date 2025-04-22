@@ -1,13 +1,16 @@
+'use client';
 import { FriendCard } from '@/app/components/utilityWindow/friendWindow/friendCard';
-import { friendsMock } from '@/app/mocks/friendsMock';
 import { Divider } from '@/components/ui/divider';
-import { auth } from '@/lib/auth';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
+import { useSession } from 'next-auth/react';
 
-export async function FriendWindow() {
-  const friends = friendsMock.data;
-  const session = await auth();
+export function FriendWindow() {
+  // const friends = friendsMock.data;
+  const { onlineUsers: friends } = useWebSocketContext();
+  const { data: session } = useSession();
+  console.log(friends);
   return (
-    <div className="p-10 w-full border-2 flex flex-col items-center gap-3">
+    <div className="p-10 w-full flex flex-col items-center gap-3">
       <div className="flex justify-between w-full">
         <h1 className="text-4xl w-full">Online Users</h1>
       </div>
@@ -18,13 +21,13 @@ export async function FriendWindow() {
           isYourself={true}
         />
         {friends && friends.length > 0 ? (
-          friends.map((d) => {
-            return (
-              <div key={d.username}>
-                <FriendCard username={d.username} isYourself={false} />
-              </div>
-            );
-          })
+          friends.filter(d => d !== session?.user?.username).map((d) => (
+            <FriendCard
+              key={d} // Add this unique key
+              username={d}
+              isYourself={false}
+            />
+          ))
         ) : (
           <p>No users found</p>
         )}
