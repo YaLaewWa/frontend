@@ -13,12 +13,15 @@ export async function FriendWindow() {
       </div>
       <Divider className="w-full mb-3" />
       <div className="w-full flex flex-col gap-2">
-        <FriendCard username={session?.user?.username ?? ''} />
+        <FriendCard
+          username={session?.user?.username ?? ''}
+          isYourself={true}
+        />
         {friends && friends.length > 0 ? (
           friends.map((d) => {
             return (
               <div key={d.username}>
-                <FriendCard username={d.username} />
+                <FriendCard username={d.username} isYourself={false} />
               </div>
             );
           })

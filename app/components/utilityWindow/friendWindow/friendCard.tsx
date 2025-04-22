@@ -3,7 +3,13 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { useSession } from 'next-auth/react';
 
-export const FriendCard = ({ username }: { username: string }) => {
+export const FriendCard = ({
+  username,
+  isYourself,
+}: {
+  username: string;
+  isYourself: boolean;
+}) => {
   const { data } = useSession();
   return (
     <div className="flex border-2 hover:border-gray-700 rounded-xl p-3 items-center gap-3">
@@ -12,10 +18,10 @@ export const FriendCard = ({ username }: { username: string }) => {
       </Avatar>
       <div className="flex w-full text-xl gap-1.5">
         <p className="text-xl">{username}</p>
-        {username === data?.user?.username && <p>(me)</p>}
+        {isYourself && <p>(me)</p>}
       </div>
 
-      {data?.user?.username != username && <Button>Chat</Button>}
+      {!isYourself && <Button>Chat</Button>}
     </div>
   );
 };
