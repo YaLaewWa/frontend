@@ -31,11 +31,15 @@ export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
     );
   } else if (currentMode === 'FRIEND') {
     return (
-      <div>
+      <div className="w-full">
         <FriendWindow />
       </div>
     );
   } else {
-    return <ChatWindow currentUser={currentUser} />;
+    return (
+      <div className="w-full">
+        <ChatWindow currentUser={currentUser} />
+      </div>
+    );
   }
 }

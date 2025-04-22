@@ -38,7 +38,7 @@ export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
       <Dialog>
         <DialogTrigger asChild>
           <div className="w-full gap-2 flex flex-col hover:cursor-pointer">
-            <h1 className="text-xl">{groupName}</h1>
+            <h1 className="text-xl">{name}</h1>
             <div className="flex gap-1">
               {members &&
                 members.length > 0 &&
@@ -58,9 +58,7 @@ export const GroupCard = ({ groupName, members, id }: GroupCardInterface) => {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle className="text-3xl font-bold">
-              {groupName}
-            </DialogTitle>
+            <DialogTitle className="text-3xl font-bold">{name}</DialogTitle>
             <DialogDescription>
               <div className="flex flex-col gap-3">
                 <p className="text-xl">Members:</p>
