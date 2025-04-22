@@ -24,6 +24,8 @@ export interface GroupInterface {
   groupName: string;
   chatID: string;
   members: User[];
+  isGroup: boolean;
+  joined: boolean;
 }
 
 export interface MessageInterface {
