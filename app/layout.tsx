@@ -32,9 +32,10 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <WebsocketProvider>
-          <SessionProvider session={session}>{children}</SessionProvider>
-        </WebsocketProvider>
+        <SessionProvider session={session}>
+          <WebsocketProvider>{children}</WebsocketProvider>
+        </SessionProvider>
+
         <Toaster richColors />
       </body>
     </html>
