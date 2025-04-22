@@ -21,10 +21,10 @@ export interface User {
 }
 
 export interface GroupInterface {
-  groupName: string;
-  chatID: string;
+  name: string;
+  id: string;
   members: User[];
-  isGroup: boolean;
+  is_group: boolean;
   joined: boolean;
 }
 
@@ -42,6 +42,6 @@ export interface MessageInterface {
 export interface FriendBarInterface {
   username: string;
   timestamp: Date;
-  unread: number;
+  count: number;
   chat: GroupInterface;
 }
