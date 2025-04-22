@@ -14,7 +14,6 @@ import { FriendBar } from '@/app/components/friendBar';
 import { FriendBarInterface } from '@/app/types/UserClass';
 import { unsortedUsersMock } from '@/app/mocks/userSidebarMock';
 import { ControlBar } from '@/app/components/controlBar/controlBar';
-import { auth } from '@/lib/auth';
 
 interface MainSidebarProps {
   currentUser: string;
@@ -38,7 +37,6 @@ export async function MainSidebar({
   currentUser,
   currentMode,
 }: MainSidebarProps) {
-  const session = await auth();
   return (
     <Sidebar>
       <SidebarHeader className="flex flex-row items-stretch gap-0 p-0">
