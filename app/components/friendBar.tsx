@@ -3,21 +3,23 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { useRouter } from 'next/navigation';
 
-interface FriendBarProp {
+export function FriendBar({
+  currentUser,
+  username,
+  unread,
+}: {
   currentUser: string;
-  barUser: string;
+  username: string;
   unread: number;
-}
-
-export function FriendBar({ currentUser, barUser, unread }: FriendBarProp) {
+}) {
   const router = useRouter();
   function changeChat(toUser: string) {
     router.push(`/?user=${toUser}`);
   }
-  const isSelected = currentUser === barUser;
+  const isSelected = currentUser === username;
   return (
     <button
-      onClick={() => changeChat(barUser)}
+      onClick={() => changeChat(username)}
       disabled={isSelected}
       className={`py-[10px] ${
         isSelected ? 'bg-gray-300' : 'hover:bg-gray-200'
@@ -26,10 +28,10 @@ export function FriendBar({ currentUser, barUser, unread }: FriendBarProp) {
       <div className="flex pl-[5px]">
         <Avatar className="items-center w-[40px] h-[40px] border">
           <AvatarFallback>
-            {barUser.split(' ').map((e) => e.charAt(0))}
+            {username.split(' ').map((e) => e.charAt(0))}
           </AvatarFallback>
         </Avatar>
-        <p className="self-center pl-[10px]">{barUser}</p>
+        <p className="self-center pl-[10px]">{username}</p>
         {isSelected ? (
           <div />
         ) : (
