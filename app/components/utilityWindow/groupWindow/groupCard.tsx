@@ -83,7 +83,20 @@ export const GroupCard = ({ name, members, id, joined }: GroupInterface) => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={joinGroupClick}>Join</Button>
+            {joined ? (
+              <Button
+                disabled={true}
+                variant={'outline'}
+                className="mr-5 p-5"
+                onClick={joinGroupClick}
+              >
+                Joined
+              </Button>
+            ) : (
+              <Button className="mr-5 p-5" onClick={joinGroupClick}>
+                Join
+              </Button>
+            )}
           </DialogFooter>
         </DialogContent>
       </Dialog>
