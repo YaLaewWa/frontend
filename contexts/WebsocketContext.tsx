@@ -15,6 +15,7 @@ import {
   addOnlineUser,
   removeOnlineUser,
 } from '@/contexts/contextHandler/onlineUserHandler';
+import { fetchGroup } from '@/contexts/action/fetchGroup';
 
 interface WebsocketContextType {
   sendMessage: (chatID: string, content: string) => void;
@@ -76,9 +77,15 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     }
   );
 
+  async function fetchAll() {
+    const res = await fetchGroup();
+    setGroups(res.data);
+    console.log(res);
+  }
+
   //Fetch everything
   useEffect(() => {
-    // setGroup(await getGroup)
+    fetchAll();
     // setSidebar(await getSidebar)
   }, []);
 
