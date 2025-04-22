@@ -1,28 +1,26 @@
 'use client';
 import { MessageBox } from '@/app/components/utilityWindow/chatWindow/messageBox';
 import { SendMessageField } from '@/app/components/utilityWindow/chatWindow/sendMessageField';
-import { chatMock } from '@/app/mocks/chatMock';
-import { MessageInterface } from '@/app/types/Chat';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { useState } from 'react';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
+import { useSession } from 'next-auth/react';
 
 interface ChatWindowProps {
   currentUser: string;
 }
 
 export function ChatWindow({ currentUser }: ChatWindowProps) {
-  const myUser = 'Friend0';
-  const unsortedChats: MessageInterface[] = chatMock.chat; //Fetch old message
-  const sortedChats: MessageInterface[] = unsortedChats.sort((n1, n2) => {
-    if (n1.timestamp > n2.timestamp) {
+  const { data: session } = useSession();
+  const { conversation } = useWebSocketContext();
+  const displayChats = conversation.sort((n1, n2) => {
+    if (n1.payload.create_at > n2.payload.create_at) {
       return 1;
-    } else if (n1.timestamp < n2.timestamp) {
+    } else if (n1.payload.create_at < n2.payload.create_at) {
       return -1;
     }
 
     return 0;
   });
-  const [displayChats, setDisplayChats] = useState(sortedChats);
   if (currentUser === '') {
     return (
       <div className="flex mx-auto my-auto text-gray-500">
@@ -36,19 +34,18 @@ export function ChatWindow({ currentUser }: ChatWindowProps) {
           <div className="">
             {displayChats.map((message) => (
               <MessageBox
-                key={myUser + message.timestamp}
-                myUser={myUser}
-                sender={message.sender}
-                timestamp={message.timestamp}
-                message={message.message}
+                key={
+                  (session?.user?.username ?? '') + message.payload.create_at
+                }
+                myUser={session?.user?.username ?? ''}
+                sender={message.payload.username}
+                timestamp={message.payload.create_at}
+                message={message.payload.message}
               />
             ))}
           </div>
         </ScrollArea>
-        <SendMessageField
-          messageArray={displayChats}
-          updateFunction={setDisplayChats}
-        />
+        <SendMessageField />
       </div>
     );
   }
