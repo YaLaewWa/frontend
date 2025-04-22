@@ -1,10 +1,11 @@
+'use client';
 import { CreateGroupDialog } from '@/app/components/utilityWindow/groupWindow/createGroupDialog';
 import { GroupCard } from '@/app/components/utilityWindow/groupWindow/groupCard';
-import { groupMock } from '@/app/mocks/groupMock';
 import { Divider } from '@/components/ui/divider';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
 
 export function GroupWindow() {
-  const groups = groupMock.data;
+  const { groups } = useWebSocketContext();
   return (
     <div className="p-10 w-full flex flex-col items-center gap-3">
       <div className="flex justify-between w-full">
@@ -16,8 +17,8 @@ export function GroupWindow() {
         {groups && groups.length > 0 ? (
           groups.map((d) => {
             return (
-              <div key={d.groupName}>
-                <GroupCard groupName={d.groupName} members={d.members} />
+              <div key={d.id}>
+                <GroupCard name={d.name} members={d.members} />
               </div>
             );
           })
