@@ -1,4 +1,5 @@
 'use client';
+import { createGroup } from '@/app/chat/actions/createGroup';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -20,9 +21,10 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Plus } from 'lucide-react';
+import { CircleCheckBig, Plus } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -40,9 +42,21 @@ export const CreateGroupDialog = () => {
   });
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    setOpen(false);
-    form.reset();
+    const res = await createGroup(values.groupName);
+    if (res?.error) {
+      toast.error('Error', {
+        description: res.error,
+      });
+    } else {
+      toast(
+        <div className="flex gap-3 items-center">
+          <CircleCheckBig className="text-green-500" />
+          <p className="text-base">Group created</p>
+        </div>
+      );
+      setOpen(false);
+      form.reset();
+    }
   }
 
   return (
