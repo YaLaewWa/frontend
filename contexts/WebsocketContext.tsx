@@ -69,6 +69,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const { data: session, status } = useSession();
   //Websocket connection
+
   const { sendJsonMessage, lastJsonMessage, readyState } = useWebSocket(
     session?.accessToken
       ? `${process.env.NEXT_PUBLIC_WEBSOCKET_URL}?token=${session.accessToken}`
@@ -96,8 +97,10 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   //Fetch everything
   useEffect(() => {
-    fetchAll();
-  }, []);
+    if (session?.accessToken){
+      fetchAll();
+    }
+  }, [session?.accessToken]);
 
   async function setOldChat() {
     const res = activeChat ? await getChat(activeChat) : [];
@@ -110,8 +113,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const sendMessage = (chatID: string, content: string) => {
     // setActiveChat("b7a882b9-8b71-451e-8aa4-67516cb90b09")
-    console.log(chatID)
-    console.log(content)
+    console.log(activeChat)
     sendJsonMessage({
       type: 'message',
       payload: {
@@ -184,5 +186,4 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
     >
       {children}
     </WebsocketContext.Provider>
-  );
-}
+  );}
