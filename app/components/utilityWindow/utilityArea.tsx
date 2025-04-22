@@ -1,4 +1,3 @@
-import { CreateGroupWindow } from '@/app/components/utilityWindow/createGroupWindow/createGroupWindow';
 import { ChatWindow } from '@/app/components/utilityWindow/chatWindow/chatWindow';
 import { FriendWindow } from '@/app/components/utilityWindow/friendWindow/friendWindow';
 import { GroupWindow } from '@/app/components/utilityWindow/groupWindow/groupWindow';
@@ -25,11 +24,17 @@ export function UtilityArea({ currentUser, currentMode }: UtitlityAreaProps) {
   //     </div>
   // );
   if (currentMode === 'GROUP') {
-    return <GroupWindow />;
-  } else if (currentMode === 'CREATE') {
-    return <CreateGroupWindow />;
+    return (
+      <div className="w-full">
+        <GroupWindow />
+      </div>
+    );
   } else if (currentMode === 'FRIEND') {
-    return <FriendWindow />;
+    return (
+      <div>
+        <FriendWindow />
+      </div>
+    );
   } else {
     return <ChatWindow currentUser={currentUser} />;
   }
