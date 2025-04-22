@@ -110,11 +110,13 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const sendMessage = (chatID: string, content: string) => {
     // setActiveChat("b7a882b9-8b71-451e-8aa4-67516cb90b09")
+    console.log(chatID)
+    console.log(content)
     sendJsonMessage({
       type: 'message',
       payload: {
-        chatID: chatID,
-        content: content,
+          chat_id: chatID,
+          content: content,
       },
     });
   };

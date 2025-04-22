@@ -29,6 +29,7 @@ export function SendMessageField() {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(activeChat);
     sendMessage(activeChat ?? '', values.message);
     form.reset({ message: '' });
   }
