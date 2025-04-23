@@ -128,7 +128,7 @@ export function WebsocketProvider({ children }: WebsocketProviderProps) {
 
   const sendNotRead = (chatID: string) => {
     sendJsonMessage({
-      type: 'ignored',
+      type: 'ignore',
       payload: {
         chat_id: chatID,
       },
