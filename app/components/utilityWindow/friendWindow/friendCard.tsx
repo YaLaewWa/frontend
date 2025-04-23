@@ -3,7 +3,9 @@ import { checkDM } from '@/app/actions/checkDM';
 import { createDM } from '@/app/actions/createDM';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import { useWebSocketContext } from '@/contexts/WebsocketContext';
+import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export const FriendCard = ({
   username,
@@ -12,7 +14,25 @@ export const FriendCard = ({
   username: string;
   isYourself: boolean;
 }) => {
-  const router = useRouter();
+  const { setActiveChat } = useWebSocketContext();
+  const [id, setId] = useState('');
+  async function check(username: string) {
+    const res = await checkDM(username);
+    if (res.status) {
+      setId(res.id);
+    } else {
+      const response = await createDM(username);
+      setId(response.id);
+    }
+  }
+  useEffect(() => {
+    check(username);
+  }, []);
+
+  async function onClick() {
+    console.log(id);
+    setActiveChat(id);
+  }
   return (
     <div className="flex border-2 hover:border-gray-700 rounded-xl p-3 items-center gap-3">
       <Avatar className="items-center w-[40px] h-[40px] border">
@@ -24,19 +44,9 @@ export const FriendCard = ({
       </div>
 
       {!isYourself && (
-        <Button
-          onClick={async () => {
-            const res = await checkDM(username);
-            if (res.status) {
-              router.push(`/?id=${res.id}`);
-            } else {
-              const response = await createDM(username);
-              router.push(`/?id=${response.id}`);
-            }
-          }}
-        >
-          Chat
-        </Button>
+        <Link href={`/?id=${id}`} onClick={onClick}>
+          <Button>Chat</Button>
+        </Link>
       )}
     </div>
   );
